@@ -23,8 +23,8 @@
         @media (max-width: 1023px) { .tab-content { display: none; } .tab-content.active { display: block; } .preview-page { transform: scale(0.95); transform-origin: top center; } }
         
         @media print {
-            body { background: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .no-print, header, footer, section.no-print, #tab-edit, #checkout-box, .watermark { display: none !important; }
+            html, body { height: 100%; overflow: hidden !important; background: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print, header, footer, #tab-edit, #checkout-box, .watermark { display: none !important; }
             .print-cv #letter-page { display: none !important; }
             .print-letter #cv-page { display: none !important; }
             .print-cv #cv-page, .print-letter #letter-page { 
@@ -38,6 +38,8 @@
                 box-shadow: none !important; 
                 margin: 0 !important; 
                 overflow: hidden !important;
+                page-break-after: avoid !important;
+                page-break-inside: avoid !important;
             }
             .print-letter #letter-page { display: block !important; }
             @page { size: A4 portrait; margin: 0; }
@@ -79,7 +81,7 @@
                 <!-- JOB TARGET -->
                 <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-200">
                     <label id="lbl-target" class="block text-emerald-800 font-black text-[10px] mb-2 uppercase">🎯 Targetizzazione Annuncio (Consigliato)</label>
-                    <textarea id="jobOffer" rows="4" class="overflow-y-auto resize-y" placeholder="Incolla l'annuncio per il matching ATS..." oninput="sync()"></textarea>
+                    <textarea id="jobOffer" rows="4" style="overflow-y: auto !important; -webkit-overflow-scrolling: touch; max-height: 180px; resize: vertical;" placeholder="Incolla l'annuncio per il matching ATS..." oninput="sync()"></textarea>
                 </div>
 
                 <!-- 1. PERSONAL -->
@@ -160,29 +162,29 @@
                             <p id="outNat"></p><p id="outDob"></p>
                         </div>
                     </div>
-                    <div class="w-2/3 p-10 flex flex-col justify-between">
+                    <div class="w-2/3 p-8 flex flex-col justify-between">
                         <div>
                             <h1 id="outName" class="text-2xl font-black text-slate-900 uppercase leading-none">Nome Cognome</h1>
-                            <p id="outRole" class="text-[10px] font-black text-blue-600 uppercase mb-6 tracking-widest"></p>
-                            <div class="space-y-5 text-[9px] leading-relaxed text-slate-700">
+                            <p id="outRole" class="text-[10px] font-black text-blue-600 uppercase mb-4 tracking-widest"></p>
+                            <div class="space-y-4 text-[9px] leading-relaxed text-slate-700">
                                 <div><p id="lbl-cv-profile" class="font-black border-b-2 border-slate-100 mb-1 uppercase text-slate-400">Profilo</p><p id="outProfile" class="whitespace-pre-wrap"></p></div>
                                 <div><p id="lbl-cv-exp" class="font-black border-b-2 border-slate-100 mb-1 uppercase text-slate-400">Esperienza</p><p id="outExp" class="whitespace-pre-wrap"></p></div>
                                 <div><p id="lbl-cv-edu" class="font-black border-b-2 border-slate-100 mb-1 uppercase text-slate-400">Istruzione</p><p id="outEdu" class="whitespace-pre-wrap"></p></div>
                             </div>
                         </div>
-                        <p id="lbl-cv-gdpr" class="pt-4 border-t border-slate-100 text-[6px] text-slate-400 uppercase">Autorizzo il trattamento dei dati (GDPR 679/16).</p>
+                        <p id="lbl-cv-gdpr" class="pt-2 border-t border-slate-100 text-[6px] text-slate-400 uppercase">Autorizzo il trattamento dei dati (GDPR 679/16).</p>
                     </div>
                 </div>
 
                 <!-- LETTER SHEET -->
-                <div id="letter-page" class="preview-page p-10">
+                <div id="letter-page" class="preview-page p-8">
                     <div class="watermark no-print" id="wm-letter"><div class="watermark-badge" id="wm-txt-letter">ANTEPRIMA LETTERA IA<br>FILE PDF SEPARATO</div></div>
-                    <div class="border-b-4 border-slate-900 pb-3 mb-6">
+                    <div class="border-b-4 border-slate-900 pb-2 mb-4">
                         <h2 id="outNameL" class="text-2xl font-black uppercase"></h2>
                         <p id="outRoleL" class="text-xs text-blue-600 font-black uppercase"></p>
                     </div>
-                    <p id="lbl-letter-subject" class="text-[10px] font-black mb-4 uppercase tracking-widest text-slate-400">Oggetto: Candidatura Professionale</p>
-                    <p id="outCoverLetter" class="text-[10px] text-slate-700 leading-relaxed whitespace-pre-wrap">La tua lettera apparirà qui...</p>
+                    <p id="lbl-letter-subject" class="text-[10px] font-black mb-3 uppercase tracking-widest text-slate-400">Oggetto: Candidatura Professionale</p>
+                    <p id="outCoverLetter" class="text-[10px] text-slate-700 leading-normal whitespace-pre-wrap">La tua lettera apparirà qui...</p>
                 </div>
 
                 <!-- CHECKOUT AREA -->
