@@ -87,19 +87,27 @@
                     </div>
                 </div>
 
-                <!-- 2. AI SECTIONS -->
+                <!-- 2. PROFILO -->
                 <div class="space-y-4">
                     <div class="flex justify-between items-center">
-                        <h2 class="font-black text-xl" id="txt-profile">2. Profilo & Esperienza</h2>
+                        <h2 class="font-black text-xl" id="txt-profile">2. Profilo Professionale</h2>
                         <button onclick="ai('profile', event)" id="btn-ai-profile" class="bg-blue-600 text-white text-[9px] font-black px-4 py-2 rounded-full shadow-lg">✨ OTTIMIZZA IA</button>
                     </div>
                     <textarea id="profile" rows="3" placeholder="Il tuo profilo..." oninput="sync()"></textarea>
+                </div>
+
+                <!-- 3. ESPERIENZA -->
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-black text-xl" id="txt-exp">3. Esperienza Lavorativa</h2>
+                        <button onclick="ai('exp', event)" id="btn-ai-exp" class="bg-blue-600 text-white text-[9px] font-black px-4 py-2 rounded-full shadow-lg">✨ OTTIMIZZA IA</button>
+                    </div>
                     <textarea id="exp" rows="5" placeholder="Le tue esperienze (Azienda, Date, Mansioni)..." oninput="sync()"></textarea>
                 </div>
 
-                <!-- 3. EDU & SKILLS -->
+                <!-- 4. EDU & SKILLS -->
                 <div class="space-y-4">
-                    <h2 class="font-black text-xl" id="txt-skills">3. Formazione & Skills</h2>
+                    <h2 class="font-black text-xl" id="txt-skills">4. Formazione & Competenze</h2>
                     <textarea id="edu" rows="3" placeholder="Scuole, Università, Corsi..." oninput="sync()"></textarea>
                     <div class="grid grid-cols-2 gap-4">
                         <input type="text" id="sk1" placeholder="Soft Skills" oninput="sync()">
@@ -109,7 +117,7 @@
                     </div>
                 </div>
 
-                <!-- 4. LETTERA IA -->
+                <!-- 5. LETTERA IA -->
                 <div class="bg-indigo-50 p-6 rounded-3xl border border-indigo-100 space-y-4">
                     <div class="flex justify-between items-center">
                         <h2 class="font-black text-lg text-indigo-900 uppercase" id="txt-letter-title">✉️ Lettera di Presentazione IA</h2>
@@ -166,14 +174,50 @@
                 <div id="checkout-box" class="bg-white border-4 border-emerald-500 rounded-[2.5rem] p-8 shadow-2xl text-center no-print space-y-3">
                     <div class="text-4xl font-black text-slate-900 mb-2 italic">€2,99 <span class="text-sm text-slate-300 font-normal line-through">€14.99</span></div>
                     <button onclick="window.location.href='https://buy.stripe.com/fZudR83LpdsCdrG2219EI03'" id="btn-pay" class="w-full bg-emerald-500 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-emerald-600 transition-all text-sm uppercase">💳 SBLOCCA DOWNLOAD PDF</button>
-                    
-                    <!-- PULSANTE DI TEST TEMPORANEO PER PROVA GRATUITA -->
                     <button onclick="enableTestMode()" class="w-full bg-slate-200 text-slate-700 font-bold py-2 rounded-xl text-xs uppercase hover:bg-slate-300">🛠️ Attiva Stampa di Test (Senza Pagare)</button>
                     <p class="text-amber-500 text-[10px] font-black uppercase mt-2">★ ★ ★ ★ ★ (4.9/5 TrustScore)</p>
                 </div>
             </div>
         </div>
     </main>
+
+    <!-- BLOG SEO & GUIDA UTENTE (5 ARTICOLI) -->
+    <section class="max-w-7xl mx-auto px-6 py-20 no-print border-t border-slate-200 mt-16">
+        <h2 id="blog-main-title" class="text-3xl font-black text-center mb-12 uppercase tracking-tighter italic text-slate-800">Guide Strategiche per il Lavoro (ATS 2026)</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <article class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                <div class="text-3xl mb-4">🤖</div>
+                <h3 id="art1-title" class="font-black text-lg mb-2 text-blue-600">Come superare i filtri ATS nel 2026</h3>
+                <p id="art1-desc" class="text-xs text-slate-600 leading-relaxed">L'80% dei curriculum viene scartato dai software automatici. CVPronto analizza il testo dell'annuncio di lavoro e inserisce le keyword esatte necessarie per posizionarti in cima alle ricerche dei recruiter.</p>
+            </article>
+
+            <article class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                <div class="text-3xl mb-4">🎯</div>
+                <h3 id="art2-title" class="font-black text-lg mb-2 text-indigo-600">L'importanza della Targetizzazione</h3>
+                <p id="art2-desc" class="text-xs text-slate-600 leading-relaxed">Inviare lo stesso CV generico a decine di aziende non funziona più. Personalizzare il Profilo e le Esperienze in base al ruolo aumenta le possibilità di colloquio fino al 300%.</p>
+            </article>
+
+            <article class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                <div class="text-3xl mb-4">✉️</div>
+                <h3 id="art3-title" class="font-black text-lg mb-2 text-emerald-600">Lettera di Presentazione Sartoriale</h3>
+                <p id="art3-desc" class="text-xs text-slate-600 leading-relaxed">Le lettere standard vengono ignorate. L'IA di CVPronto genera una lettera di accompagnamento persuasiva e personalizzata che evidenzia subito perché sei il candidato ideale.</p>
+            </article>
+
+            <article class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                <div class="text-3xl mb-4">🌍</div>
+                <h3 id="art4-title" class="font-black text-lg mb-2 text-amber-600">Curriculum in Inglese Perfetto</h3>
+                <p id="art4-desc" class="text-xs text-slate-600 leading-relaxed">Tradurre letteralmente il CV dall'italiano genera errori di terminologia aziendale. Il nostro motore IA adatta le tue competenze secondo i canoni ufficiali usati dalle multinazionali USA/UK.</p>
+            </article>
+
+            <article class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                <div class="text-3xl mb-4">📄</div>
+                <h3 id="art5-title" class="font-black text-lg mb-2 text-rose-600">Formato PDF e Layout A4 Certificate</h3>
+                <p id="art5-desc" class="text-xs text-slate-600 leading-relaxed">Layout puliti senza colonne complesse o grafica pesante che mandano in confusione i lettori ottici. Scarica file PDF leggeri, perfetti per la stampa ed esenti da bug di impaginazione.</p>
+            </article>
+
+        </div>
+    </section>
 
     <!-- FOOTER -->
     <footer class="bg-slate-900 text-white py-12 px-6 no-print text-center">
@@ -192,44 +236,76 @@
             
             const t = {
                 it: { 
-                    target: "🎯 Targetizzazione Annuncio (Consigliato)", personal: "1. Info Personali", profile: "2. Profilo & Esperienza", skills: "3. Formazione & Skills", letterTitle: "✉️ Lettera di Presentazione IA",
-                    btnAiProfile: "✨ OTTIMIZZA IA", btnAiLetter: "✨ GENERA ORA",
+                    target: "🎯 Targetizzazione Annuncio (Consigliato)", personal: "1. Info Personali", profile: "2. Profilo Professionale", exp: "3. Esperienza Lavorativa", skills: "4. Formazione & Competenze", letterTitle: "✉️ Lettera di Presentazione IA",
+                    btnAiProfile: "✨ OTTIMIZZA IA", btnAiExp: "✨ OTTIMIZZA IA", btnAiLetter: "✨ GENERA ORA",
+                    phFn: "Nome *", phLn: "Cognome *", phRole: "Ruolo / Titolo *", phEmail: "Email *", phPhone: "Telefono *", phAddr: "Città, Italia", phNat: "Nazionalità", phDob: "Data di Nascita",
+                    phSk1: "Soft Skills", phSk2: "Hard Skills", phL1: "Lingue", phLic: "Patenti",
                     phJob: "Incolla l'annuncio per il matching ATS...", phProfile: "Il tuo profilo...", phExp: "Le tue esperienze (Azienda, Date, Mansioni)...", phEdu: "Scuole, Università, Corsi...", phCover: "L'IA scriverà qui basandosi sull'annuncio...",
                     cvContacts: "Contatti", cvData: "Dati", cvProfile: "Profilo", cvExp: "Esperienza", cvEdu: "Istruzione", cvGdpr: "Autorizzo il trattamento dei dati (GDPR 679/16).",
                     letterSubject: "Oggetto: Candidatura Professionale",
                     wmCv: "ANTEPRIMA CVPRONTO.IT<br>SBLOCCA PER PDF PULITO", wmLetter: "ANTEPRIMA LETTERA IA<br>FILE PDF SEPARATO",
-                    payBtn: "💳 SBLOCCA DOWNLOAD PDF", gdprBanner: "Dati salvati nel tuo browser. IA in tempo reale.", gdprAccept: "Accetto"
+                    payBtn: "💳 SBLOCCA DOWNLOAD PDF", gdprBanner: "Dati salvati nel tuo browser. IA in tempo reale.", gdprAccept: "Accetto",
+                    blogMain: "Guide Strategiche per il Lavoro (ATS 2026)",
+                    art1T: "Come superare i filtri ATS nel 2026", art1D: "L'80% dei curriculum viene scartato dai software automatici. CVPronto analizza l'annuncio e inserisce le keyword esatte necessarie.",
+                    art2T: "L'importanza della Targetizzazione", art2D: "Inviare lo stesso CV generico non funziona più. Personalizzare il Profilo in base al ruolo aumenta le possibilità fino al 300%.",
+                    art3T: "Lettera di Presentazione Sartoriale", art3D: "Le lettere standard vengono ignorate. L'IA di CVPronto genera una lettera persuasiva che evidenzia perché sei il candidato ideale.",
+                    art4T: "Curriculum in Inglese Perfetto", art4D: "Tradurre letteralmente genera errori. Il nostro motore IA adatta le competenze secondo i canoni ufficiali usati dalle multinazionali USA/UK.",
+                    art5T: "Formato PDF e Layout A4 Certificate", art5D: "Layout puliti senza colonne complesse che confondono i lettori ottici. Scarica file PDF leggeri, perfetti per la stampa."
                 },
                 en: { 
-                    target: "🎯 Job Targeting (Recommended)", personal: "1. Personal Info", profile: "2. Profile & Experience", skills: "3. Education & Skills", letterTitle: "✉️ AI Cover Letter",
-                    btnAiProfile: "✨ AI OPTIMIZE", btnAiLetter: "✨ GENERATE NOW",
+                    target: "🎯 Job Targeting (Recommended)", personal: "1. Personal Info", profile: "2. Professional Summary", exp: "3. Work Experience", skills: "4. Education & Skills", letterTitle: "✉️ AI Cover Letter",
+                    btnAiProfile: "✨ AI OPTIMIZE", btnAiExp: "✨ AI OPTIMIZE", btnAiLetter: "✨ GENERATE NOW",
+                    phFn: "First Name *", phLn: "Last Name *", phRole: "Job Title *", phEmail: "Email *", phPhone: "Phone *", phAddr: "City, Country", phNat: "Nationality", phDob: "Date of Birth",
+                    phSk1: "Soft Skills", phSk2: "Hard Skills", phL1: "Languages", phLic: "Licenses",
                     phJob: "Paste job description for ATS matching...", phProfile: "Your professional summary...", phExp: "Work Experience (Company, Dates, Roles)...", phEdu: "Education & Certifications...", phCover: "AI will write your cover letter here...",
                     cvContacts: "Contacts", cvData: "Personal Info", cvProfile: "Summary", cvExp: "Experience", cvEdu: "Education", cvGdpr: "I hereby authorize the processing of my personal data (GDPR).",
                     letterSubject: "Subject: Job Application",
                     wmCv: "FULL PREVIEW<br>UNLOCK FOR CLEAN PDF", wmLetter: "AI COVER LETTER PREVIEW<br>SEPARATE PDF FILE",
-                    payBtn: "💳 UNLOCK PDF DOWNLOAD", gdprBanner: "Data saved locally in your browser. Real-time AI.", gdprAccept: "Accept"
+                    payBtn: "💳 UNLOCK PDF DOWNLOAD", gdprBanner: "Data saved locally in your browser. Real-time AI.", gdprAccept: "Accept",
+                    blogMain: "Strategic Career Guides (ATS 2026)",
+                    art1T: "How to Pass ATS Filters in 2026", art1D: "80% of resumes are rejected by automated software. CVPronto analyzes the job offer and inserts the required target keywords.",
+                    art2T: "The Power of Job Targeting", art2D: "Sending generic resumes no longer works. Tailoring your profile for specific roles increases interview callbacks up to 300%.",
+                    art3T: "Tailored AI Cover Letter", art3D: "Generic cover letters get ignored. CVPronto AI writes compelling cover letters highlighting why you are the best fit.",
+                    art4T: "Flawless English Resumes", art4D: "Literal translations result in terminology errors. Our AI adapts your background to UK/US corporate standards.",
+                    art5T: "ATS-Certified A4 PDF Layout", art5D: "Clean layouts with zero complex tables that confuse ATS scanners. Download fast, print-ready PDF files."
                 }
             };
 
             const data = t[l];
 
-            // Aggiornamento Form e Pulsanti
+            // Aggiornamento Titoli Form
             document.getElementById('lbl-target').innerText = data.target;
             document.getElementById('txt-personal').innerText = data.personal;
             document.getElementById('txt-profile').innerText = data.profile;
+            document.getElementById('txt-exp').innerText = data.exp;
             document.getElementById('txt-skills').innerText = data.skills;
             document.getElementById('txt-letter-title').innerText = data.letterTitle;
             document.getElementById('btn-ai-profile').innerText = data.btnAiProfile;
+            document.getElementById('btn-ai-exp').innerText = data.btnAiExp;
             document.getElementById('btn-ai-letter').innerText = data.btnAiLetter;
 
-            // Aggiornamento Placeholder
+            // Aggiornamento Placeholder Campi Singoli
+            document.getElementById('fn').placeholder = data.phFn;
+            document.getElementById('ln').placeholder = data.phLn;
+            document.getElementById('role').placeholder = data.phRole;
+            document.getElementById('email').placeholder = data.phEmail;
+            document.getElementById('phone').placeholder = data.phPhone;
+            document.getElementById('address').placeholder = data.phAddr;
+            document.getElementById('nat').placeholder = data.phNat;
+            document.getElementById('dob').placeholder = data.phDob;
+            document.getElementById('sk1').placeholder = data.phSk1;
+            document.getElementById('sk2').placeholder = data.phSk2;
+            document.getElementById('l1').placeholder = data.phL1;
+            document.getElementById('lic').placeholder = data.phLic;
+
+            // Aggiornamento Textarea
             document.getElementById('jobOffer').placeholder = data.phJob;
             document.getElementById('profile').placeholder = data.phProfile;
             document.getElementById('exp').placeholder = data.phExp;
             document.getElementById('edu').placeholder = data.phEdu;
             document.getElementById('coverLetter').placeholder = data.phCover;
 
-            // Aggiornamento Anteprima PDF
+            // Aggiornamento Documenti PDF
             document.getElementById('lbl-cv-contacts').innerText = data.cvContacts;
             document.getElementById('lbl-cv-data').innerText = data.cvData;
             document.getElementById('lbl-cv-profile').innerText = data.cvProfile;
@@ -238,12 +314,20 @@
             document.getElementById('lbl-cv-gdpr').innerText = data.cvGdpr;
             document.getElementById('lbl-letter-subject').innerText = data.letterSubject;
 
-            // Watermark e Pulsanti Pagamento
+            // Watermark & Checkout
             document.getElementById('wm-txt-cv').innerHTML = data.wmCv;
             document.getElementById('wm-txt-letter').innerHTML = data.wmLetter;
             if(document.getElementById('btn-pay')) document.getElementById('btn-pay').innerText = data.payBtn;
             document.getElementById('txt-gdpr-banner').innerHTML = data.gdprBanner + ' <a href="#" class="underline">Privacy</a>';
             document.getElementById('btn-gdpr-accept').innerText = data.gdprAccept;
+
+            // Blog SEO
+            document.getElementById('blog-main-title').innerText = data.blogMain;
+            document.getElementById('art1-title').innerText = data.art1T; document.getElementById('art1-desc').innerText = data.art1D;
+            document.getElementById('art2-title').innerText = data.art2T; document.getElementById('art2-desc').innerText = data.art2D;
+            document.getElementById('art3-title').innerText = data.art3T; document.getElementById('art3-desc').innerText = data.art3D;
+            document.getElementById('art4-title').innerText = data.art4T; document.getElementById('art4-desc').innerText = data.art4D;
+            document.getElementById('art5-title').innerText = data.art5T; document.getElementById('art5-desc').innerText = data.art5D;
         }
 
         function switchTab(t) {
