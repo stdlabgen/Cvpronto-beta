@@ -5,30 +5,35 @@ export default async function handler(req, res) {
 
   if (!API_KEY) return res.status(500).send("Errore: Chiave API mancante.");
 
-  // ISTRUZIONI RIGIDE PER EVITARE TESTO IN PIU
-  let instructions = `Sei un HR Senior. Lingua: ${language === 'en' ? 'Inglese' : 'Italiano'}. Ruolo: ${role}. Annuncio: ${jobOffer}.`;
+  // Regola rigida per forzare la lingua di output
+  const isEn = language === 'en';
+  const langRule = isEn 
+    ? "CRITICAL MANDATE: You MUST write the output EXCLUSIVELY in ENGLISH language, regardless of the input language provided." 
+    : "MANDATO CRITICO: Devi scrivere l'output ESCLUSIVAMENTE in lingua ITALIANA, indipendentemente dalla lingua dell'input.";
+
+  let instructions = `Sei un esperto HR Senior e ATS 2026. ${langRule} Ruolo target: ${role || 'Professionista'}. Annuncio di riferimento: ${jobOffer || 'Nessuno'}.`;
   
-  if (section === 'profile') {
-    instructions += " Scrivi solo un paragrafo di testo per il PROFILO professionale. Non includere nomi, contatti o intestazioni.";
-  } else if (section === 'exp') {
-    instructions += " Scrivi ESCLUSIVAMENTE punti elenco professionali per l'ESPERIENZA lavorativa. NON includere il nome del candidato, NON includere intestazioni come 'Esperienza Professionale' o 'Istruzione'. Solo le mansioni.";
-  } else if (section === 'letter') {
-    instructions += " Scrivi una lettera di presentazione di max 200 parole. Solo il corpo del testo.";
+  if (section === 'letter') {
+    instructions += " Scrivi una lettera di presentazione persuasiva di max 200 parole. Fornisci solo il testo finale pulito, senza introduzioni o commenti.";
+  } else if (section === 'skills') {
+    instructions += " Suggerisci 6 competenze tecniche e soft pertinenti separate da virgola. Fornisci solo il testo finale.";
+  } else {
+    instructions += " Ottimizza per superare i filtri ATS inserendo le keyword dell'annuncio. Nessun formattato speciale o grassetto.";
   }
 
   try {
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${API_KEY}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contents: [{ parts: [{ text: instructions + "\n\nTesto utente da elaborare: " + prompt }] }] })
+      body: JSON.stringify({ contents: [{ parts: [{ text: instructions + "\n\nTesto utente da ottimizzare: " + (prompt || "Genera testo professionale") }] }] })
     });
     const data = await response.json();
-    let result = data.candidates[0].content.parts[0].text;
     
-    // Pulizia finale per sicurezza
-    result = result.replace(/Nome Cognome/gi, '').replace(/Profilo Professionale/gi, '').trim();
-    
-    res.status(200).send(result);
+    if (data.candidates && data.candidates[0]?.content?.parts[0]?.text) {
+      res.status(200).send(data.candidates[0].content.parts[0].text);
+    } else {
+      res.status(500).send("Risposta IA non valida.");
+    }
   } catch (error) {
     res.status(500).send("Errore IA: " + error.message);
   }
