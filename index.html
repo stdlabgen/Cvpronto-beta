@@ -4,875 +4,332 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- REDIRECT AUTOMATICO PER PASSAGGIO GOOGLE SEARCH CONSOLE -->
-    <script>
-      if (window.location.hostname.includes('netlify.app')) {
-        window.location.replace('https://cvpronto.it' + window.location.pathname + window.location.search);
-      }
-    </script>
-
-    <!-- FAVICON INLINE -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
-
-    <!-- GOOGLE ANALYTICS (GA4) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N9P3CQSWGN"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-N9P3CQSWGN');
-    </script>
-
-    <!-- VERIFICA GOOGLE SEARCH CONSOLE -->
+    <!-- SEO & VERIFICA -->
     <meta name="google-site-verification" content="UEmTxGqDYRCg0E4DNaG47l6u0eNcts44nKpO-TPoR4c" />
-
-    <!-- SEO & METATAG -->
     <title id="seo-title">CVPronto.it | Il CV Builder IA con Targetizzazione Annunci (€2.99)</title>
-    <meta name="description" id="seo-desc" content="Crea un CV professionale certificato per i filtri ATS. Incolla l'annuncio di lavoro e lascia che l'IA inserisca le parole chiave esatte. Solo 2,99€ una tantum, zero abbonamenti.">
-    <meta name="keywords" content="creare cv gratis, modello curriculum vitae pdf, generatore cv ia, fare cv online, curriculum professionale, cv ats friendly, resume builder ai, cv pronto">
-    <meta name="author" content="CVBuilder ATS">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="googlebot" content="index, follow">
-    <link rel="canonical" href="https://cvpronto.it/">
-
-    <!-- OPEN GRAPH & SOCIAL PREVIEWS -->
-    <meta property="og:title" content="CVPronto.it | CV ATS-Friendly in 60s con IA (€2.99)">
-    <meta property="og:description" content="Ottimizza il tuo Curriculum sull'annuncio di lavoro con l'IA. Scarica subito il PDF senza abbonamenti ricorsivi.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://cvpronto.it/">
-    <meta property="og:image" content="https://placehold.co/1200x630/1e293b/ffffff/png?text=CVBuilder+ATS%0ACrea+il+tuo+CV+in+60s">
-
-    <!-- TWITTER CARDS -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CVPronto.it | AI Resume Builder ATS (€2.99)">
-    <meta name="twitter:description" content="Crea il tuo CV ATS-friendly con l'IA e il Job-Matching. Scarica subito il PDF senza abbonamento.">
-    <meta name="twitter:image" content="https://placehold.co/1200x630/1e293b/ffffff/png?text=CVBuilder+ATS%0ACrea+il+tuo+CV+in+60s">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="description" content="Crea un CV professionale certificato ATS. Incolla l'annuncio e lascia che l'IA faccia il matching sartoriale. Solo 2.99€ una tantum.">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N9P3CQSWGN"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-N9P3CQSWGN');</script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: #f1f5f9; color: #1f2937; }
-
-        .sr-only-h1 { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-
-        /* HERO SECTION BANNER */
-        .hero-banner { background: #ffffff; border-bottom: 1px solid #e2e8f0; text-align: center; padding: 18px 16px 14px 16px; }
-        .hero-title { font-size: 1.25rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
-        .hero-title span { color: #2563eb; }
-        .hero-subtitle { font-size: 0.85rem; color: #64748b; font-weight: 500; }
-
-        /* HEADER & STEPPER */
-        .top-bar { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .logo { font-size: 1.25rem; font-weight: 800; color: #2563eb; display: flex; align-items: center; gap: 8px; }
-        .logo span { color: #0f172a; }
-
-        .header-right { display: flex; align-items: center; gap: 16px; }
-        .lang-switch { display: flex; background: #f1f5f9; padding: 3px; border-radius: 6px; border: 1px solid #cbd5e1; }
-        .lang-btn { border: none; background: transparent; padding: 4px 10px; font-size: 0.75rem; font-weight: 700; cursor: pointer; border-radius: 4px; color: #64748b; }
-        .lang-btn.active { background: #2563eb; color: #ffffff; }
-
-        .stepper { display: flex; gap: 16px; align-items: center; }
-        .step { font-size: 0.82rem; font-weight: 600; color: #9ca3af; display: flex; align-items: center; gap: 6px; }
-        .step.active { color: #2563eb; }
-        .step-num { width: 22px; height: 22px; border-radius: 50%; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
-        .step.active .step-num { background: #2563eb; color: #fff; }
-
-        /* TRUST BANNER TOP */
-        .trust-banner { background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%); color: #ffffff; font-size: 0.8rem; text-align: center; padding: 8px 12px; font-weight: 600; display: flex; justify-content: center; align-items: center; gap: 8px; letter-spacing: 0.2px; }
-
-        /* MOBILE TABS */
-        .mobile-tabs { display: none; background: #ffffff; border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .tab-btn { flex: 1; padding: 12px; border: none; background: transparent; font-size: 0.88rem; font-weight: 700; color: #64748b; cursor: pointer; border-bottom: 3px solid transparent; }
-        .tab-btn.active { color: #2563eb; border-bottom-color: #2563eb; background: #f8fafc; }
-
-        /* MAIN CONTAINER */
-        .main-container { max-width: 1350px; margin: 20px auto; padding: 0 16px; display: grid; grid-template-columns: 1fr; gap: 24px; }
-        @media(min-width: 960px) { .main-container { grid-template-columns: 1.15fr 0.85fr; } }
-
-        /* EDITOR PANEL */
-        .editor-panel { background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        .section-title { font-size: 1.05rem; font-weight: 700; color: #111827; margin-bottom: 14px; margin-top: 18px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #f3f4f6; padding-bottom: 8px; }
-
-        .job-offer-box { background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 14px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(22,101,52,0.05); }
-        .job-offer-title { font-size: 0.85rem; font-weight: 700; color: #166534; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
-        .full-width { grid-column: span 2; }
-
-        label { display: block; font-size: 0.78rem; font-weight: 600; color: #374151; margin-bottom: 4px; }
-        input, textarea { width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.85rem; background: #fafafa; transition: border-color 0.2s, background-color 0.2s; }
-        input:focus, textarea:focus { outline: none; border-color: #2563eb; background: #fff; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
-
-        .btn-ai-magic { background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%); color: #ffffff; border: none; font-size: 0.75rem; font-weight: 700; padding: 7px 14px; border-radius: 6px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(79,70,229,0.3); }
-        .btn-ai-magic:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(79,70,229,0.4); }
-        .btn-ai-magic:disabled { opacity: 0.5; cursor: not-allowed; }
-
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .spinner { display: inline-block; animation: spin 1s linear infinite; }
-
-        /* PREVIEW PANEL & TABS DOCUMENTO */
-        .preview-panel { position: sticky; top: 20px; }
-        .doc-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
-        .doc-tab-btn { flex: 1; padding: 10px; border: 1px solid #cbd5e1; background: #ffffff; border-radius: 6px; font-size: 0.82rem; font-weight: 700; color: #475569; cursor: pointer; text-align: center; transition: all 0.2s; }
-        .doc-tab-btn.active { background: #2563eb; color: #ffffff; border-color: #2563eb; }
-
-        .a4-document {
-            background: #ffffff; border-radius: 4px; border: 1px solid #cbd5e1;
-            min-height: 297mm; box-shadow: 0 10px 25px rgba(0,0,0,0.1); position: relative;
-            overflow: hidden; display: grid; grid-template-columns: 32% 68%;
-        }
-
-        .a4-document.letter-mode { display: block; padding: 40px; }
-
-        /* WATERMARK GLASSMORPHISM */
-        .watermark-overlay {
-            position: absolute; inset: 0; pointer-events: none; z-index: 20;
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(1px);
-        }
-        .watermark-text {
-            transform: rotate(-25deg); font-size: 1.1rem; font-weight: 800;
-            color: #dc2626; text-transform: uppercase; text-align: center;
-            line-height: 1.4; letter-spacing: 0.5px;
-            background: rgba(255, 255, 255, 0.92);
-            padding: 12px 20px; border-radius: 8px; border: 2px dashed #dc2626;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-        }
-
-        /* TEMPLATE CV INTERNO */
-        .cv-sidebar { background: #1e293b; color: #fff; padding: 16px; }
-        .cv-main { padding: 16px; background: #fff; }
-        .cv-photo { width: 75px; height: 75px; border-radius: 50%; object-fit: cover; margin-bottom: 12px; display: none; border: 2px solid #38bdf8; }
-        .cv-avatar { width: 50px; height: 50px; border-radius: 50%; background: #0284c7; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 12px; }
-
-        .cv-sec-title-side { font-size: 0.65rem; text-transform: uppercase; color: #38bdf8; font-weight: 700; border-bottom: 1px solid #334155; padding-bottom: 2px; margin: 12px 0 6px 0; letter-spacing: 0.5px; }
-        .cv-sec-title-main { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 2px; margin: 10px 0 6px 0; letter-spacing: 0.5px; }
-
-        .cv-text-side { font-size: 0.65rem; color: #cbd5e1; margin-bottom: 6px; word-break: break-all; line-height: 1.3; }
-        .cv-text-main { font-size: 0.67rem; color: #334155; line-height: 1.4; white-space: pre-wrap; margin-bottom: 6px; }
-
-        .cv-name { font-size: 1.3rem; font-weight: 800; color: #0f172a; line-height: 1.1; }
-        .cv-role-title { font-size: 0.75rem; font-weight: 700; color: #2563eb; text-transform: uppercase; margin-bottom: 12px; }
-
-        /* STILI LETTERA DI PRESENTAZIONE */
-        .letter-header { border-bottom: 2px solid #2563eb; padding-bottom: 12px; margin-bottom: 24px; }
-        .letter-body { font-size: 0.85rem; color: #334155; line-height: 1.6; white-space: pre-wrap; }
-
-        /* CHECKOUT CARD HIGH CONVERSION */
-        .checkout-card {
-            margin-top: 16px; background: #ffffff; border: 2px solid #10b981;
-            padding: 20px; border-radius: 12px; text-align: center;
-            box-shadow: 0 8px 20px rgba(16,185,129,0.18); position: relative;
-        }
-        .promo-badge {
-            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-            background: #ef4444; color: #ffffff; font-size: 0.68rem; font-weight: 800;
-            padding: 3px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;
-        }
-        .price-tag { margin: 8px 0 12px 0; font-size: 0.85rem; color: #4b5563; }
-        .old-price { text-decoration: line-through; color: #9ca3af; margin-right: 4px; }
-        .new-price { font-size: 1.4rem; font-weight: 800; color: #059669; }
-
-        @keyframes pulse-btn {
-            0% { transform: scale(1); box-shadow: 0 4px 14px rgba(5,150,105,0.4); }
-            50% { transform: scale(1.02); box-shadow: 0 6px 20px rgba(5,150,105,0.6); }
-            100% { transform: scale(1); box-shadow: 0 4px 14px rgba(5,150,105,0.4); }
-        }
-        .checkout-btn {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: #ffffff; padding: 15px 24px; text-decoration: none; border: none;
-            font-weight: 800; border-radius: 8px; display: block; font-size: 1.05rem;
-            cursor: pointer; width: 100%; transition: all 0.2s; animation: pulse-btn 2.5s infinite;
-        }
-        .checkout-btn:hover { background: #047857; animation: none; transform: translateY(-2px); }
-        .checkout-subtext { font-size: 0.75rem; color: #4b5563; margin-top: 10px; font-weight: 600; display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; }
-        .rating-stars { color: #f59e0b; font-size: 0.8rem; margin-top: 6px; font-weight: 700; }
-
-        .print-actions { display: flex; gap: 8px; flex-direction: column; }
-
-        /* SEO SECTION STYLING */
-        .seo-section {
-            max-width: 1350px; margin: 40px auto 20px auto; padding: 24px;
-            background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0;
-            color: #334155; line-height: 1.6;
-        }
-        .seo-section h2 { font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 12px; }
-        .seo-section h3 { font-size: 1rem; font-weight: 700; color: #1e293b; margin: 16px 0 8px 0; }
-        .seo-section p { font-size: 0.88rem; margin-bottom: 12px; }
-        .seo-section ul { margin-left: 20px; font-size: 0.88rem; }
-        .seo-section li { margin-bottom: 6px; }
-
-        /* RESPONSIVE DESIGN PER MOBILE */
-        @media(max-width: 959px) {
-            .mobile-tabs { display: flex; }
-            .preview-panel { display: none; }
-            .preview-panel.mobile-active { display: block; }
-            .editor-panel.mobile-hidden { display: none; }
-            .form-grid { grid-template-columns: 1fr; }
-            .full-width { grid-column: span 1; }
-        }
-
-        /* STAMPA PDF SEPARATA */
-        @page { size: A4 portrait; margin: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        .preview-page { width: 100%; aspect-ratio: 1 / 1.414; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; overflow: hidden; margin-bottom: 25px; border: 1px solid #cbd5e1; }
+        .watermark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); backdrop-filter: blur(1px); z-index: 50; pointer-events: none; }
+        .watermark-badge { transform: rotate(-25deg); border: 2px dashed #dc2626; color: #dc2626; padding: 12px; font-weight: 900; background: white; border-radius: 8px; font-size: 0.8rem; text-align: center; }
+        
+        input, textarea { background: #fafafa; border: 1px solid #d1d5db; border-radius: 8px; padding: 10px; font-size: 0.85rem; width: 100%; }
+        @media (max-width: 1023px) { .tab-content { display: none; } .tab-content.active { display: block; } .preview-page { transform: scale(0.95); transform-origin: top center; } }
         @media print {
-            html, body { width: 210mm; background: #fff !important; margin: 0 !important; padding: 0 !important; }
-            .top-bar, .trust-banner, .hero-banner, .mobile-tabs, .editor-panel, .checkout-card, .watermark-overlay, .seo-section, .doc-tabs { display: none !important; }
-            .main-container, .preview-panel { display: block !important; margin: 0 !important; padding: 0 !important; width: 100% !important; }
-            .a4-document { border: none !important; box-shadow: none !important; width: 210mm !important; min-height: 297mm !important; margin: 0 !important; border-radius: 0 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            
-            body.print-cv #letter-page { display: none !important; }
-            body.print-letter #cv-page { display: none !important; }
+            .no-print { display: none !important; }
+            .print-cv #letter-page { display: none !important; }
+            .print-letter #cv-page { display: none !important; }
+            .preview-page { box-shadow: none !important; border: none !important; margin: 0 !important; width: 100% !important; }
+            @page { size: A4 portrait; margin: 0; }
         }
     </style>
 </head>
-<body>
+<body class="antialiased text-slate-900">
 
-    <h1 class="sr-only-h1">Build an ATS-Certified Resume with AI</h1>
-
-    <div class="trust-banner">
-        <span>🛡️ Layout Certificato 100% Compatibile con i Software ATS delle Aziende</span>
+    <!-- GDPR BANNER -->
+    <div id="gdpr" class="fixed bottom-4 left-4 right-4 bg-slate-900 text-white p-4 rounded-2xl z-[100] flex flex-col md:flex-row items-center justify-between gap-4 no-print shadow-2xl border border-slate-700">
+        <p id="txt-gdpr-banner" class="text-[10px] text-slate-300 uppercase font-bold tracking-widest">Dati salvati nel tuo browser. IA in tempo reale. <a href="#" class="underline">Privacy</a></p>
+        <button onclick="document.getElementById('gdpr').remove()" id="btn-gdpr-accept" class="bg-blue-600 px-8 py-2 rounded-xl text-xs font-black uppercase">Accetto</button>
     </div>
 
-    <div class="hero-banner">
-        <div class="hero-title">Crea il tuo CV e Lettera a prova di <span>ATS con l'IA</span></div>
-        <div class="hero-subtitle">Compila i campi o usa l'intelligenza artificiale per ottimizzare la tua candidatura in 2 minuti.</div>
-    </div>
-
-    <header class="top-bar">
-        <div class="logo">📄 CVBuilder<span>ATS</span></div>
-        <div class="header-right">
-            <div class="lang-switch">
-                <button class="lang-btn active" id="btn-it" onclick="setLanguage('it')">🇮🇹 IT</button>
-                <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">🇬🇧 EN</button>
-            </div>
-            <div class="stepper">
-                <div class="step active"><span class="step-num">1</span> <span id="st-1">Compilazione</span></div>
-                <div class="step active"><span class="step-num">2</span> <span id="st-2">IA Magic</span></div>
-                <div class="step" id="step3"><span class="step-num">3</span> <span id="st-3">PDF</span></div>
-            </div>
+    <!-- HEADER -->
+    <header class="bg-white border-b sticky top-0 z-50 p-4 no-print shadow-sm flex justify-between items-center">
+        <div class="flex flex-col">
+            <span class="text-blue-600 font-black text-xl italic tracking-tighter">CVPronto.it</span>
+            <span class="text-[9px] font-bold text-slate-400 uppercase">Mission: Superare ATS</span>
+        </div>
+        <div class="flex bg-slate-100 p-1 rounded-lg border">
+            <button onclick="setLang('it')" id="btn-it" class="px-3 py-1 text-xs font-bold rounded-md bg-blue-600 text-white">IT</button>
+            <button onclick="setLang('en')" id="btn-en" class="px-3 py-1 text-xs font-bold rounded-md text-slate-500">EN</button>
         </div>
     </header>
 
-    <div class="mobile-tabs">
-        <button class="tab-btn active" id="tab-editor" onclick="switchMobileTab('editor')">✏️ 1. Compila Dati</button>
-        <button class="tab-btn" id="tab-preview" onclick="switchMobileTab('preview')">👁️ 2. Anteprima & Scarica</button>
+    <!-- MOBILE NAVIGATION -->
+    <div class="lg:hidden flex sticky top-[73px] z-40 bg-white border-b no-print">
+        <button onclick="switchTab('edit')" id="tab-edit-btn" class="flex-1 py-4 text-[10px] font-black border-b-2 border-blue-600 text-blue-600 uppercase tracking-widest">1. Compilazione</button>
+        <button onclick="switchTab('view')" id="tab-view-btn" class="flex-1 py-4 text-[10px] font-black border-b-2 border-transparent text-slate-400 uppercase tracking-widest">2. Anteprima PDF</button>
     </div>
 
-    <div class="main-container">
-        <!-- FORM COMPLETO -->
-        <div class="editor-panel" id="editorPanel">
-
-            <div class="job-offer-box">
-                <div class="job-offer-title" id="lbl-job-title">🎯 Targetizzazione Annuncio di Lavoro (Consigliato)</div>
-                <label id="lbl-job-desc" style="font-weight:400; color:#166534;">Incolla il testo dell'offerta di lavoro per inserire automaticamente nel CV e nella Lettera le parole chiave richieste.</label>
-                <textarea id="jobOffer" rows="3" placeholder="Incolla qui il testo dell'offerta di lavoro..." oninput="updatePreview()"></textarea>
-            </div>
-
-            <!-- 1. INFORMAZIONI PERSONALI -->
-            <div class="section-title" id="sec-1">1. Informazioni Personali</div>
-            <div class="form-grid">
-                <div class="full-width">
-                    <label id="lbl-photo">Foto Profilo (Opzionale)</label>
-                    <input type="file" id="photoInput" accept="image/*" onchange="loadPhoto(event)">
-                </div>
-                <div><label id="lbl-fn">Nome *</label><input type="text" id="fn" placeholder="Es. Marco" oninput="updatePreview()"></div>
-                <div><label id="lbl-ln">Cognome *</label><input type="text" id="ln" placeholder="Es. Rossi" oninput="updatePreview()"></div>
-                <div class="full-width"><label id="lbl-role">Ruolo Desiderato / Titolo *</label><input type="text" id="role" placeholder="Es. Store Manager / Sviluppatore Web" oninput="updatePreview()"></div>
-                <div><label id="lbl-email">Email *</label><input type="email" id="email" placeholder="Es. nome@email.com" oninput="updatePreview()"></div>
-                <div><label id="lbl-phone">Telefono *</label><input type="tel" id="phone" placeholder="Es. +39 340 1234567" oninput="updatePreview()"></div>
-                <div class="full-width"><label id="lbl-addr">Indirizzo e Città</label><input type="text" id="address" placeholder="Es. Via Roma 12, 20121 Milano (MI)" oninput="updatePreview()"></div>
-                <div><label id="lbl-nat">Nazionalità</label><input type="text" id="nat" placeholder="Es. Italiana" oninput="updatePreview()"></div>
-                <div><label id="lbl-dob">Data di Nascita</label><input type="text" id="dob" placeholder="Es. 15/05/1992" oninput="updatePreview()"></div>
-            </div>
-
-            <!-- 2. PROFILO PROFESSIONALE -->
-            <div class="section-title">
-                <span id="sec-2">2. Profilo Professionale</span>
-                <button type="button" class="btn-ai-magic" id="btn-profile" onclick="optimizeText('profile')">✨ Riscrivi con IA</button>
-            </div>
-            <div class="form-grid">
-                <div class="full-width">
-                    <textarea id="profile" rows="3" placeholder="Scrivi una breve introduzione sulle tue competenze..." oninput="updatePreview()"></textarea>
-                </div>
-            </div>
-
-            <!-- 3. LETTERA DI PRESENTAZIONE (AUTOCOMPILATA) -->
-            <div class="section-title">
-                <span id="sec-letter">3. Lettera di Presentazione</span>
-                <button type="button" class="btn-ai-magic" id="btn-letter" onclick="generateCoverLetter()">✨ Genera con IA</button>
-            </div>
-            <div class="form-grid">
-                <div class="full-width">
-                    <textarea id="coverLetter" rows="5" placeholder="La tua lettera di presentazione verrà generata automaticamente qui..." oninput="updatePreview()"></textarea>
-                </div>
-            </div>
-
-            <!-- 4. ESPERIENZA LAVORATIVA -->
-            <div class="section-title">
-                <span id="sec-3">4. Esperienza Lavorativa</span>
-                <button type="button" class="btn-ai-magic" id="btn-exp" onclick="optimizeText('exp')">✨ Ottimizza per ATS</button>
-            </div>
-            <div class="form-grid">
-                <div class="full-width">
-                    <textarea id="exp" rows="5" placeholder="• Ruolo @ Nome Azienda (Anno - Anno)&#10;  - Descrizione delle mansioni svolte" oninput="updatePreview()"></textarea>
-                </div>
-            </div>
-
-            <!-- 5. ISTRUZIONE -->
-            <div class="section-title" id="sec-4">5. Istruzione e Formazione</div>
-            <div class="form-grid">
-                <div class="full-width">
-                    <textarea id="edu" rows="3" placeholder="• Titolo di Studio / Corso (Anno - Anno)&#10;  Nome Istituto" oninput="updatePreview()"></textarea>
-                </div>
-            </div>
-
-            <!-- 6. LINGUE -->
-            <div class="section-title" id="sec-5">6. Lingue Conosciute</div>
-            <div class="form-grid">
-                <div><label id="lbl-lang-native">Madrelingua</label><input type="text" id="nativeLang" placeholder="Es. Italiano" oninput="updatePreview()"></div>
-                <div><label id="lbl-lang-other">Altre Lingue e Livello</label><input type="text" id="otherLangs" placeholder="Es. Inglese (B2)" oninput="updatePreview()"></div>
-            </div>
-
-            <!-- 7. CAPACITÀ E COMPETENZE -->
-            <div class="section-title">
-                <span id="sec-6">7. Capacità e Competenze</span>
-                <button type="button" class="btn-ai-magic" id="btn-skills" onclick="suggestSkills()">✨ Suggerisci con IA</button>
-            </div>
-            <div class="form-grid">
-                <div class="full-width">
-                    <label id="lbl-sk-rel">Competenze Relazionali & Comunicative</label>
-                    <input type="text" id="relationalSkills" placeholder="Es. Lavoro in squadra, Comunicazione" oninput="updatePreview()">
-                </div>
-                <div class="full-width">
-                    <label id="lbl-sk-org">Competenze Organizzative & Gestionali</label>
-                    <input type="text" id="orgSkills" placeholder="Es. Problem solving, Management" oninput="updatePreview()">
-                </div>
-                <div class="full-width">
-                    <label id="lbl-sk-tech">Competenze Tecniche & Digitali</label>
-                    <input type="text" id="techSkills" placeholder="Es. Excel, CRM, Software" oninput="updatePreview()">
-                </div>
-            </div>
-
-            <!-- 8. DETTAGLI AGGIUNTIVI -->
-            <div class="section-title" id="sec-7">8. Dettagli Aggiuntivi</div>
-            <div class="form-grid">
-                <div><label id="lbl-lic">Patente / Automunito</label><input type="text" id="licenses" placeholder="Es. Patente B" oninput="updatePreview()"></div>
-                <div><label id="lbl-extra">Ulteriori Informazioni / Referenze</label><input type="text" id="extraInfo" placeholder="Es. Disponibile a trasferte" oninput="updatePreview()"></div>
-            </div>
-
-        </div>
-
-        <!-- ANTEPRIMA CV & LETTERA -->
-        <div class="preview-panel" id="previewPanel">
-            <div class="doc-tabs">
-                <button class="doc-tab-btn active" id="tab-doc-cv" onclick="switchDocTab('cv')">📄 Curriculum Vitae</button>
-                <button class="doc-tab-btn" id="tab-doc-letter" onclick="switchDocTab('letter')">✉️ Lettera di Presentazione</button>
-            </div>
-
-            <!-- DOCUMENTO CV -->
-            <div class="a4-document" id="cv-page">
-                <div class="watermark-overlay" id="watermark">
-                    <div class="watermark-text" id="watermark-txt">ANTEPRIMA CV COMPLETE<br>SBLOCCA E SCARICA PDF<br>(SOLI 2,99 €)</div>
+    <main class="max-w-7xl mx-auto p-4 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- EDITOR -->
+        <div id="tab-edit" class="tab-content active space-y-8 no-print">
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-8">
+                
+                <!-- JOB TARGET -->
+                <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-200">
+                    <label id="lbl-target" class="block text-emerald-800 font-black text-[10px] mb-2 uppercase">🎯 Targetizzazione Annuncio (Consigliato)</label>
+                    <textarea id="jobOffer" rows="3" placeholder="Incolla l'annuncio per il matching ATS..." oninput="sync()"></textarea>
                 </div>
 
-                <div class="cv-sidebar">
-                    <img id="outPhoto" class="cv-photo" alt="Foto">
-                    <div id="outInitials" class="cv-avatar">CV</div>
-
-                    <div class="cv-sec-title-side" id="cv-head-contacts">Contatti</div>
-                    <div class="cv-text-side" id="outEmail"></div>
-                    <div class="cv-text-side" id="outPhone"></div>
-                    <div class="cv-text-side" id="outAddress"></div>
-
-                    <div class="cv-sec-title-side" id="cv-head-personal">Dati Personali</div>
-                    <div class="cv-text-side" id="outNat"></div>
-                    <div class="cv-text-side" id="outDob"></div>
-
-                    <div class="cv-sec-title-side" id="cv-head-langs">Lingue</div>
-                    <div class="cv-text-side" id="outNativeLang"></div>
-                    <div class="cv-text-side" id="outOtherLangs"></div>
-
-                    <div class="cv-sec-title-side" id="cv-head-lic">Patenti</div>
-                    <div class="cv-text-side" id="outLicenses"></div>
-                </div>
-
-                <div class="cv-main">
-                    <div class="cv-name" id="outName">Nome Cognome</div>
-                    <div class="cv-role-title" id="outRole">Titolo Professionale</div>
-
-                    <div class="cv-sec-title-main" id="cv-head-profile">Profilo Professionale</div>
-                    <div class="cv-text-main" id="outProfile"></div>
-
-                    <div class="cv-sec-title-main" id="cv-head-exp">Esperienza Lavorativa</div>
-                    <div class="cv-text-main" id="outExp"></div>
-
-                    <div class="cv-sec-title-main" id="cv-head-edu">Istruzione e Formazione</div>
-                    <div class="cv-text-main" id="outEdu"></div>
-
-                    <div class="cv-sec-title-main" id="cv-head-skills">Capacità e Competenze</div>
-                    <div class="cv-text-main" id="outRelational"></div>
-                    <div class="cv-text-main" id="outOrg"></div>
-                    <div class="cv-text-main" id="outTech"></div>
-
-                    <div class="cv-sec-title-main" id="cv-head-extra">Ulteriori Informazioni</div>
-                    <div class="cv-text-main" id="outExtra"></div>
-
-                    <div style="font-size: 0.55rem; color: #94a3b8; margin-top: 15px; border-top: 1px solid #f1f5f9; padding-top: 4px;" id="cv-footer-gdpr">
-                        Autorizzo il trattamento dei miei dati personali ai sensi del D.Lgs. 196/2003 e del GDPR 679/16.
+                <!-- 1. PERSONAL -->
+                <div class="space-y-4">
+                    <h2 class="font-black text-xl text-slate-800 border-b pb-2 flex items-center justify-between"><span id="txt-personal">1. Info Personali</span></h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="col-span-2 p-3 bg-slate-50 rounded-xl border-dashed border-2 flex items-center gap-3">
+                            <input type="file" id="photo" class="text-[10px]" onchange="readImg(this)">
+                        </div>
+                        <input type="text" id="fn" placeholder="Nome *" oninput="sync()">
+                        <input type="text" id="ln" placeholder="Cognome *" oninput="sync()">
+                        <input type="text" id="role" placeholder="Ruolo / Titolo *" class="col-span-2 border-blue-100 font-bold text-blue-600" oninput="sync()">
+                        <input type="email" id="email" placeholder="Email *" oninput="sync()">
+                        <input type="tel" id="phone" placeholder="Telefono *" oninput="sync()">
+                        <input type="text" id="address" placeholder="Città, Italia" class="col-span-2" oninput="sync()">
+                        <input type="text" id="nat" placeholder="Nazionalità" oninput="sync()">
+                        <input type="text" id="dob" placeholder="Data di Nascita" oninput="sync()">
                     </div>
                 </div>
-            </div>
 
-            <!-- DOCUMENTO LETTERA DI PRESENTAZIONE -->
-            <div class="a4-document letter-mode" id="letter-page" style="display: none;">
-                <div class="letter-header">
-                    <div class="cv-name" id="outNameL">Nome Cognome</div>
-                    <div class="cv-role-title" id="outRoleL">Titolo Professionale</div>
-                    <div style="font-size: 0.75rem; color: #64748b;" id="outContactL"></div>
+                <!-- 2. AI SECTIONS -->
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-black text-xl" id="txt-profile">2. Profilo & Esperienza</h2>
+                        <button onclick="ai('profile', event)" id="btn-ai-profile" class="bg-blue-600 text-white text-[9px] font-black px-4 py-2 rounded-full shadow-lg">✨ OTTIMIZZA IA</button>
+                    </div>
+                    <textarea id="profile" rows="3" placeholder="Il tuo profilo..." oninput="sync()"></textarea>
+                    <textarea id="exp" rows="5" placeholder="Le tue esperienze (Azienda, Date, Mansioni)..." oninput="sync()"></textarea>
                 </div>
-                <div class="letter-body" id="outLetter">A chi di competenza...</div>
-            </div>
 
-            <!-- CHECKOUT CARD HIGH CONVERSION -->
-            <div class="checkout-card" id="checkoutCard">
-                <div class="promo-badge">🔥 Nessun abbonamento • Solo 2,99€ Una Tantum</div>
-                <div class="price-tag">
-                    <span class="old-price">9,99 €</span>
-                    <span class="new-price">2,99 €</span>
+                <!-- 3. EDU & SKILLS -->
+                <div class="space-y-4">
+                    <h2 class="font-black text-xl" id="txt-skills">3. Formazione & Skills</h2>
+                    <textarea id="edu" rows="3" placeholder="Scuole, Università, Corsi..." oninput="sync()"></textarea>
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" id="sk1" placeholder="Soft Skills" oninput="sync()">
+                        <input type="text" id="sk2" placeholder="Hard Skills" oninput="sync()">
+                        <input type="text" id="l1" placeholder="Lingue" oninput="sync()">
+                        <input type="text" id="lic" placeholder="Patenti" oninput="sync()">
+                    </div>
                 </div>
-                <div id="checkoutBtnContainer">
-                    <button onclick="redirectToCheckout()" class="checkout-btn" id="btn-pay">💳 Scarica CV e Lettera in PDF</button>
-                </div>
-                <div class="rating-stars">★ ★ ★ ★ ★ (4.9/5 da oltre 1.200 utenti)</div>
-                <div class="checkout-subtext" id="subtext-pay">
-                    <span>🔒 Pagamento Sicuro Stripe</span> • 
-                    <span>⚡ Download Istantaneo</span>
+
+                <!-- 4. LETTERA IA -->
+                <div class="bg-indigo-50 p-6 rounded-3xl border border-indigo-100 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-black text-lg text-indigo-900 uppercase" id="txt-letter-title">✉️ Lettera di Presentazione IA</h2>
+                        <button onclick="ai('letter', event)" id="btn-ai-letter" class="bg-indigo-600 text-white text-[9px] font-black px-4 py-2 rounded-full shadow-lg">✨ GENERA ORA</button>
+                    </div>
+                    <textarea id="coverLetter" rows="5" placeholder="L'IA scriverà qui basandosi sull'annuncio..." oninput="sync()"></textarea>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- SEZIONE SEO INFORMATIVA DEDICATA A GOOGLE -->
-    <section class="seo-section">
-        <h2>Perché l'ottimizzazione sartoriale con IA supera ogni CV generico?</h2>
-        <p>A differenza dei costosi software ad abbonamento mensile o dei modelli statici Europass, <strong>CVPronto.it</strong> integra la tecnologia di <strong>Job-Matching sartoriale</strong>. Incollando il testo di qualsiasi offerta di lavoro, la nostra Intelligenza Artificiale estrae ed elabora le keyword essenziali per darti il massimo punteggio di compatibilità nei software aziendali.</p>
-
-        <h3>Cos'è un Applicant Tracking System (ATS) e come funziona?</h3>
-        <p>Gli <em>Applicant Tracking System (ATS)</em> sono i filtri automatici usati dai recruiter per scansionare centinaia di candidature. Un curriculum con tabelle errate o senza le giuste competenze richieste viene scartato prima ancora di essere letto.</p>
-
-        <ul>
-            <li><strong>Ottimizzazione sull'Annuncio:</strong> Integrazione fluida delle parole chiave per superare la prima fase di selezione.</li>
-            <li><strong>Layout Grafico Pulito:</strong> Struttura a colonna singola e vettoriale compatibile al 100% con i parser ATS.</li>
-            <li><strong>Trasparenza Assoluta:</strong> Generi il CV senza obbligo di registrazione e paghi 2,99€ solo quando decidi di scaricare il PDF pulito. Nessun rinnovo automatico.</li>
-        </ul>
-    </section>
-
-<script>
-    const STRIPE_CHECKOUT_URL = "https://buy.stripe.com/fZudR83LpdsCdrG2219EI03";
-    const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/w9qfq8cn5wfjo2jqmwuvy54bwbrkmvtj";
-
-    let currentLang = 'it';
-
-    const translations = {
-        it: {
-            st1: "Compilazione", st2: "IA Magic", st3: "PDF",
-            jobTitle: "🎯 Targetizzazione Annuncio di Lavoro (Consigliato)",
-            jobDesc: "Incolla il testo dell'offerta di lavoro per inserire automaticamente nel CV e nella Lettera le parole chiave richieste.",
-            sec1: "1. Informazioni Personali", photo: "Foto Profilo (Opzionale)", fn: "Nome *", ln: "Cognome *",
-            role: "Ruolo Desiderato / Titolo *", email: "Email *", phone: "Telefono *", addr: "Indirizzo e Città",
-            nat: "Nazionalità", dob: "Data di Nascita",
-            sec2: "2. Profilo Professionale", secLetter: "3. Lettera di Presentazione", sec3: "4. Esperienza Lavorativa", sec4: "5. Istruzione e Formazione",
-            sec5: "6. Lingue Conosciute", langNative: "Madrelingua", langOther: "Altre Lingue e Livello",
-            sec6: "7. Capacità e Competenze", skRel: "Competenze Relazionali & Comunicative",
-            skOrg: "Competenze Organizzative & Gestionali", skTech: "Competenze Tecniche & Digitali",
-            sec7: "8. Dettagli Aggiuntivi", lic: "Patente / Automunito", extra: "Ulteriori Informazioni / Referenze",
-            cvContacts: "Contatti", cvPersonal: "Dati Personali", cvLangs: "Lingue", cvLic: "Patenti",
-            cvProfile: "Profilo Professionale", cvExp: "Esperienza Lavorativa", cvEdu: "Istruzione e Formazione",
-            cvSkills: "Capacità e Competenze", cvExtra: "Ulteriori Informazioni",
-            cvGdpr: "Autorizzo il trattamento dei miei dati personali ai sensi del D.Lgs. 196/2003 e del GDPR 679/16.",
-            watermark: "ANTEPRIMA CV COMPLETE<br>SBLOCCA E SCARICA PDF<br>(SOLI 2,99 €)",
-            payBtn: "💳 Scarica CV e Lettera in PDF",
-            paySubtext: "🔒 Pagamento Sicuro Stripe • ⚡ Download Istantaneo",
-            downloadCvBtn: "📥 Scarica Solo CV (PDF)",
-            downloadLetterBtn: "✉️ Scarica Solo Lettera (PDF)"
-        },
-        en: {
-            st1: "Filling", st2: "AI Magic", st3: "PDF",
-            jobTitle: "🎯 Job Offer Targeting",
-            jobDesc: "Paste the job description to automatically optimize keywords for both Resume and Cover Letter.",
-            sec1: "1. Personal Information", photo: "Profile Photo", fn: "First Name *", ln: "Last Name *",
-            role: "Target Job Title *", email: "Email *", phone: "Phone *", addr: "Address & City",
-            nat: "Nationality", dob: "Date of Birth",
-            sec2: "2. Professional Summary", secLetter: "3. Cover Letter", sec3: "4. Work Experience", sec4: "5. Education",
-            sec5: "6. Languages", langNative: "Native Language", langOther: "Other Languages",
-            sec6: "7. Skills", skRel: "Interpersonal Skills",
-            skOrg: "Organizational Skills", skTech: "Technical Skills",
-            sec7: "8. Additional Details", lic: "Driving License", extra: "Additional Info",
-            cvContacts: "Contacts", cvPersonal: "Personal Details", cvLangs: "Languages", cvLic: "Licenses",
-            cvProfile: "Professional Summary", cvExp: "Work Experience", cvEdu: "Education",
-            cvSkills: "Skills", cvExtra: "Additional Info",
-            cvGdpr: "I hereby authorize the processing of my personal data.",
-            watermark: "FULL PREVIEW<br>UNLOCK PDF<br>(€2.99)",
-            payBtn: "💳 Download Resume & Cover Letter",
-            paySubtext: "🔒 Secure Stripe Checkout • ⚡ Instant Download",
-            downloadCvBtn: "📥 Download Resume Only (PDF)",
-            downloadLetterBtn: "✉️ Download Cover Letter Only (PDF)"
-        }
-    };
-
-    function cleanAIText(text) {
-        if (!text) return '';
-        return text.replace(/\*\*/g, '').replace(/\.\./g, '.').trim();
-    }
-
-    function switchMobileTab(tab) {
-        const editor = document.getElementById('editorPanel');
-        const preview = document.getElementById('previewPanel');
-        const btnEditor = document.getElementById('tab-editor');
-        const btnPreview = document.getElementById('tab-preview');
-
-        if (tab === 'editor') {
-            editor.classList.remove('mobile-hidden');
-            preview.classList.remove('mobile-active');
-            btnEditor.classList.add('active');
-            btnPreview.classList.remove('active');
-        } else {
-            editor.classList.add('mobile-hidden');
-            preview.classList.add('mobile-active');
-            btnEditor.classList.remove('active');
-            btnPreview.classList.add('active');
-        }
-    }
-
-    function switchDocTab(doc) {
-        const cvPage = document.getElementById('cv-page');
-        const letterPage = document.getElementById('letter-page');
-        const btnCv = document.getElementById('tab-doc-cv');
-        const btnLetter = document.getElementById('tab-doc-letter');
-
-        if (doc === 'cv') {
-            cvPage.style.display = 'grid';
-            letterPage.style.display = 'none';
-            btnCv.classList.add('active');
-            btnLetter.classList.remove('active');
-        } else {
-            cvPage.style.display = 'none';
-            letterPage.style.display = 'block';
-            btnCv.classList.remove('active');
-            btnLetter.classList.add('active');
-        }
-    }
-
-    function setLanguage(lang) {
-        currentLang = lang;
-        document.getElementById('btn-it').classList.toggle('active', lang === 'it');
-        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-        const t = translations[lang];
-        document.getElementById('st-1').innerText = t.st1;
-        document.getElementById('st-2').innerText = t.st2;
-        document.getElementById('st-3').innerText = t.st3;
-        document.getElementById('lbl-job-title').innerText = t.jobTitle;
-        document.getElementById('lbl-job-desc').innerText = t.jobDesc;
-        document.getElementById('sec-1').innerText = t.sec1;
-        document.getElementById('lbl-photo').innerText = t.photo;
-        document.getElementById('lbl-fn').innerText = t.fn;
-        document.getElementById('lbl-ln').innerText = t.ln;
-        document.getElementById('lbl-role').innerText = t.role;
-        document.getElementById('lbl-email').innerText = t.email;
-        document.getElementById('lbl-phone').innerText = t.phone;
-        document.getElementById('lbl-addr').innerText = t.addr;
-        document.getElementById('lbl-nat').innerText = t.nat;
-        document.getElementById('lbl-dob').innerText = t.dob;
-        document.getElementById('sec-2').innerText = t.sec2;
-        document.getElementById('sec-letter').innerText = t.secLetter;
-        document.getElementById('sec-3').innerText = t.sec3;
-        document.getElementById('sec-4').innerText = t.sec4;
-        document.getElementById('sec-5').innerText = t.sec5;
-        document.getElementById('lbl-lang-native').innerText = t.langNative;
-        document.getElementById('lbl-lang-other').innerText = t.langOther;
-        document.getElementById('sec-6').innerText = t.sec6;
-        document.getElementById('lbl-sk-rel').innerText = t.skRel;
-        document.getElementById('lbl-sk-org').innerText = t.skOrg;
-        document.getElementById('lbl-sk-tech').innerText = t.skTech;
-        document.getElementById('sec-7').innerText = t.sec7;
-        document.getElementById('lbl-lic').innerText = t.lic;
-        document.getElementById('lbl-extra').innerText = t.extra;
-        document.getElementById('cv-head-contacts').innerText = t.cvContacts;
-        document.getElementById('cv-head-personal').innerText = t.cvPersonal;
-        document.getElementById('cv-head-langs').innerText = t.cvLangs;
-        document.getElementById('cv-head-lic').innerText = t.cvLic;
-        document.getElementById('cv-head-profile').innerText = t.cvProfile;
-        document.getElementById('cv-head-exp').innerText = t.cvExp;
-        document.getElementById('cv-head-edu').innerText = t.cvEdu;
-        document.getElementById('cv-head-skills').innerText = t.cvSkills;
-        document.getElementById('cv-head-extra').innerText = t.cvExtra;
-        document.getElementById('cv-footer-gdpr').innerText = t.cvGdpr;
-        document.getElementById('watermark-txt').innerHTML = t.watermark;
-        document.getElementById('btn-pay').innerText = t.payBtn;
-        updatePreview();
-    }
-
-    const FORM_FIELDS = ['jobOffer', 'fn', 'ln', 'role', 'email', 'phone', 'address', 'nat', 'dob', 'profile', 'coverLetter', 'exp', 'edu', 'nativeLang', 'otherLangs', 'relationalSkills', 'orgSkills', 'techSkills', 'licenses', 'extraInfo'];
-
-    function saveData() {
-        FORM_FIELDS.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) localStorage.setItem('cv_data_' + id, el.value);
-        });
-    }
-
-    function loadData() {
-        FORM_FIELDS.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) {
-                const val = localStorage.getItem('cv_data_' + id);
-                if (val !== null) el.value = val;
-            }
-        });
-    }
-
-    function loadPhoto(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function() {
-            const img = document.getElementById('outPhoto');
-            img.src = reader.result;
-            img.style.display = 'block';
-            document.getElementById('outInitials').style.display = 'none';
-            try { localStorage.setItem('cv_photo_data', reader.result); } catch(e){}
-        };
-        reader.readAsDataURL(file);
-    }
-
-    function restorePhoto() {
-        const savedPhoto = localStorage.getItem('cv_photo_data');
-        if (savedPhoto) {
-            const img = document.getElementById('outPhoto');
-            img.src = savedPhoto;
-            img.style.display = 'block';
-            document.getElementById('outInitials').style.display = 'none';
-        }
-    }
-
-    function updatePreview() {
-        saveData();
-        const fn = document.getElementById('fn').value.trim();
-        const ln = document.getElementById('ln').value.trim();
-        const name = (fn || ln) ? `${fn} ${ln}` : 'Nome Cognome';
-        const role = document.getElementById('role').value || 'Titolo Professionale';
-
-        document.getElementById('outInitials').innerText = `${fn ? fn.charAt(0) : ''}${ln ? ln.charAt(0) : ''}`.toUpperCase() || 'CV';
-        document.getElementById('outName').innerText = name;
-        document.getElementById('outRole').innerText = role;
-
-        document.getElementById('outEmail').innerText = document.getElementById('email').value ? `✉️ ${document.getElementById('email').value}` : '';
-        document.getElementById('outPhone').innerText = document.getElementById('phone').value ? `📞 ${document.getElementById('phone').value}` : '';
-        document.getElementById('outAddress').innerText = document.getElementById('address').value ? `📍 ${document.getElementById('address').value}` : '';
-
-        document.getElementById('outNat').innerText = document.getElementById('nat').value ? `Nazionalità: ${document.getElementById('nat').value}` : '';
-        document.getElementById('outDob').innerText = document.getElementById('dob').value ? `Nascita: ${document.getElementById('dob').value}` : '';
-
-        document.getElementById('outProfile').innerText = cleanAIText(document.getElementById('profile').value);
-        document.getElementById('outExp').innerText = cleanAIText(document.getElementById('exp').value);
-        document.getElementById('outEdu').innerText = cleanAIText(document.getElementById('edu').value);
-
-        document.getElementById('outNativeLang').innerText = document.getElementById('nativeLang').value ? `Madrelingua: ${document.getElementById('nativeLang').value}` : '';
-        document.getElementById('outOtherLangs').innerText = document.getElementById('otherLangs').value ? `Altre: ${document.getElementById('otherLangs').value}` : '';
-
-        const relVal = cleanAIText(document.getElementById('relationalSkills').value);
-        const orgVal = cleanAIText(document.getElementById('orgSkills').value);
-        const techVal = cleanAIText(document.getElementById('techSkills').value);
-
-        document.getElementById('outRelational').innerText = relVal ? `• Relazionali: ${relVal}` : '';
-        document.getElementById('outOrg').innerText = orgVal ? `• Organizzative: ${orgVal}` : '';
-        document.getElementById('outTech').innerText = techVal ? `• Tecniche: ${techVal}` : '';
-
-        document.getElementById('outLicenses').innerText = cleanAIText(document.getElementById('licenses').value);
-        document.getElementById('outExtra').innerText = cleanAIText(document.getElementById('extraInfo').value);
-
-        // AGGIORNAMENTO ANTEPRIMA LETTERA DI PRESENTAZIONE
-        document.getElementById('outNameL').innerText = name;
-        document.getElementById('outRoleL').innerText = role;
-        document.getElementById('outContactL').innerText = `${document.getElementById('email').value} ${document.getElementById('phone').value ? '| ' + document.getElementById('phone').value : ''}`;
-        document.getElementById('outLetter').innerText = cleanAIText(document.getElementById('coverLetter').value) || (currentLang === 'it' ? 'La tua lettera di presentazione comparirà qui...' : 'Your cover letter will appear here...');
-    }
-
-    async function optimizeText(fieldId) {
-        const field = document.getElementById(fieldId);
-        if (!field.value.trim()) return alert("Scrivi prima del testo da ottimizzare.");
-
-        const btnMap = { 'profile': 'btn-profile', 'exp': 'btn-exp' };
-        const btn = document.getElementById(btnMap[fieldId]);
-        const originalText = btn ? btn.innerHTML : '';
-
-        if (btn) {
-            btn.disabled = true;
-            btn.innerHTML = `<span class="spinner">⏳</span> Elaborazione...`;
-        }
-
-        try {
-            const res = await fetch(MAKE_WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    prompt: field.value, text: field.value,
-                    role: document.getElementById('role').value, 
-                    section: fieldId, jobOffer: document.getElementById('jobOffer').value || '',
-                    language: currentLang
-                })
-            });
-            const textResult = await res.text();
-            if (textResult) field.value = cleanAIText(textResult);
-        } catch(e) { 
-            alert("Errore IA"); 
-        } finally {
-            if (btn) {
-                btn.disabled = false;
-                btn.innerHTML = originalText;
-            }
-            updatePreview();
-        }
-    }
-
-    async function generateCoverLetter() {
-        const btn = document.getElementById('btn-letter');
-        const originalText = btn ? btn.innerHTML : '';
-
-        if (btn) {
-            btn.disabled = true;
-            btn.innerHTML = `<span class="spinner">⏳</span> Generazione...`;
-        }
-
-        try {
-            const res = await fetch(MAKE_WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    section: 'coverLetter',
-                    role: document.getElementById('role').value, 
-                    jobOffer: document.getElementById('jobOffer').value || '',
-                    profile: document.getElementById('profile').value || '',
-                    exp: document.getElementById('exp').value || '',
-                    language: currentLang
-                })
-            });
-            const textResult = await res.text();
-            if (textResult) document.getElementById('coverLetter').value = cleanAIText(textResult);
-        } catch(e) { 
-            alert("Errore IA nella generazione della lettera"); 
-        } finally {
-            if (btn) {
-                btn.disabled = false;
-                btn.innerHTML = originalText;
-            }
-            updatePreview();
-        }
-    }
-
-    async function suggestSkills() {
-        const btn = document.getElementById('btn-skills');
-        const originalText = btn ? btn.innerHTML : '';
-
-        if (btn) {
-            btn.disabled = true;
-            btn.innerHTML = `<span class="spinner">⏳</span> Elaborazione...`;
-        }
-
-        try {
-            const res = await fetch(MAKE_WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    section: 'skills', role: document.getElementById('role').value, 
-                    jobOffer: document.getElementById('jobOffer').value || '', language: currentLang
-                })
-            });
-            const textResult = await res.text();
-            if (textResult) {
-                try {
-                    const parsed = JSON.parse(textResult);
-                    if (parsed.relational) document.getElementById('relationalSkills').value = cleanAIText(parsed.relational);
-                    if (parsed.org) document.getElementById('orgSkills').value = cleanAIText(parsed.org);
-                    if (parsed.tech) document.getElementById('techSkills').value = cleanAIText(parsed.tech);
-                } catch(e) { 
-                    document.getElementById('techSkills').value = cleanAIText(textResult); 
-                }
-            }
-        } catch(e) { 
-            alert("Errore IA"); 
-        } finally {
-            if (btn) {
-                btn.disabled = false;
-                btn.innerHTML = originalText;
-            }
-            updatePreview();
-        }
-    }
-
-    function printDoc(docType) {
-        document.body.classList.remove('print-cv', 'print-letter');
-        if (docType === 'cv') {
-            document.body.classList.add('print-cv');
-        } else if (docType === 'letter') {
-            document.body.classList.add('print-letter');
-        }
-        window.print();
-    }
-
-    function redirectToCheckout() {
-        saveData();
-        if (typeof gtag === 'function') {
-            gtag('event', 'click_paywall', {
-                'event_category': 'monetization',
-                'event_label': 'stripe_checkout_click',
-                'value': 2.99,
-                'currency': 'EUR'
-            });
-        }
-        window.location.href = STRIPE_CHECKOUT_URL;
-    }
-
-    window.onload = function() {
-        loadData();
-        restorePhoto();
-        updatePreview();
-
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('paid') === 'true') {
-            document.getElementById('watermark').style.display = 'none';
-            document.getElementById('step3').classList.add('active');
-            
-            document.getElementById('checkoutBtnContainer').innerHTML = `
-                <div class="print-actions">
-                    <button onclick="printDoc('cv')" class="checkout-btn" style="background: #2563eb; animation: none;">
-                        ${translations[currentLang].downloadCvBtn}
-                    </button>
-                    <button onclick="printDoc('letter')" class="checkout-btn" style="background: #0284c7; animation: none;">
-                        ${translations[currentLang].downloadLetterBtn}
-                    </button>
+        <!-- PREVIEW -->
+        <div id="tab-view" class="tab-content lg:block">
+            <div class="sticky top-24 space-y-8">
+                
+                <!-- CV SHEET -->
+                <div id="cv-page" class="preview-page flex">
+                    <div class="watermark no-print" id="wm-cv"><div class="watermark-badge" id="wm-txt-cv">ANTEPRIMA CVPRONTO.IT<br>SBLOCCA PER PDF PULITO</div></div>
+                    <div class="w-1/3 bg-slate-800 text-white p-6 text-[9px] space-y-6">
+                        <img id="outPhoto" class="w-20 h-20 rounded-full border-2 border-blue-500 mx-auto hidden object-cover shadow-lg">
+                        <div id="initials" class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto shadow-xl">CV</div>
+                        <div class="space-y-3">
+                            <p id="lbl-cv-contacts" class="font-black border-b border-slate-600 text-blue-400 uppercase py-1 tracking-tighter">Contatti</p>
+                            <p id="outEmail"></p><p id="outPhone"></p><p id="outAddress"></p>
+                        </div>
+                        <div class="space-y-3">
+                            <p id="lbl-cv-data" class="font-black border-b border-slate-600 text-blue-400 uppercase py-1 tracking-tighter">Dati</p>
+                            <p id="outNat"></p><p id="outDob"></p>
+                        </div>
+                    </div>
+                    <div class="w-2/3 p-10">
+                        <h1 id="outName" class="text-2xl font-black text-slate-900 uppercase leading-none">Nome Cognome</h1>
+                        <p id="outRole" class="text-[10px] font-black text-blue-600 uppercase mb-8 tracking-widest"></p>
+                        <div class="space-y-6 text-[9px] leading-relaxed text-slate-700">
+                            <section><p id="lbl-cv-profile" class="font-black border-b-2 border-slate-50 mb-1 uppercase text-slate-400">Profilo</p><p id="outProfile"></p></section>
+                            <section><p id="lbl-cv-exp" class="font-black border-b-2 border-slate-50 mb-1 uppercase text-slate-400">Esperienza</p><p id="outExp" class="whitespace-pre-wrap"></p></section>
+                            <section><p id="lbl-cv-edu" class="font-black border-b-2 border-slate-50 mb-1 uppercase text-slate-400">Istruzione</p><p id="outEdu" class="whitespace-pre-wrap"></p></section>
+                        </div>
+                        <p id="lbl-cv-gdpr" class="mt-8 pt-4 border-t border-slate-50 text-[6px] text-slate-400 uppercase">Autorizzo il trattamento dei dati (GDPR 679/16).</p>
+                    </div>
                 </div>
-            `;
 
-            if (typeof gtag === 'function') {
-                gtag('event', 'purchase', {
-                    'transaction_id': 'T_' + Date.now(),
-                    'value': 2.99,
-                    'currency': 'EUR',
-                    'items': [{ 'item_name': 'CV_Letter_PDF_Download' }]
-                });
-            }
-        } else {
-            if (typeof gtag === 'function') {
-                gtag('event', 'view_paywall', {
-                    'event_category': 'monetization',
-                    'event_label': 'preview_and_watermark_view'
-                });
+                <!-- LETTER SHEET -->
+                <div id="letter-page" class="preview-page p-14">
+                    <div class="watermark no-print" id="wm-letter"><div class="watermark-badge" id="wm-txt-letter">ANTEPRIMA LETTERA IA<br>FILE PDF SEPARATO</div></div>
+                    <div class="border-b-4 border-slate-900 pb-4 mb-8">
+                        <h2 id="outNameL" class="text-2xl font-black uppercase"></h2>
+                        <p id="outRoleL" class="text-xs text-blue-600 font-black uppercase"></p>
+                    </div>
+                    <p id="lbl-letter-subject" class="text-[10px] font-black mb-6 uppercase tracking-widest text-slate-400">Oggetto: Candidatura Professionale</p>
+                    <p id="outLetter" class="text-[11px] text-slate-700 leading-loose whitespace-pre-wrap">La tua lettera apparirà qui...</p>
+                </div>
+
+                <!-- CHECKOUT AREA -->
+                <div id="checkout-box" class="bg-white border-4 border-emerald-500 rounded-[2.5rem] p-8 shadow-2xl text-center no-print space-y-3">
+                    <div class="text-4xl font-black text-slate-900 mb-2 italic">€2,99 <span class="text-sm text-slate-300 font-normal line-through">€14.99</span></div>
+                    <button onclick="window.location.href='https://buy.stripe.com/fZudR83LpdsCdrG2219EI03'" id="btn-pay" class="w-full bg-emerald-500 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-emerald-600 transition-all text-sm uppercase">💳 SBLOCCA DOWNLOAD PDF</button>
+                    
+                    <!-- PULSANTE DI TEST TEMPORANEO PER PROVA GRATUITA -->
+                    <button onclick="enableTestMode()" class="w-full bg-slate-200 text-slate-700 font-bold py-2 rounded-xl text-xs uppercase hover:bg-slate-300">🛠️ Attiva Stampa di Test (Senza Pagare)</button>
+                    <p class="text-amber-500 text-[10px] font-black uppercase mt-2">★ ★ ★ ★ ★ (4.9/5 TrustScore)</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white py-12 px-6 no-print text-center">
+        <div class="text-2xl font-black mb-6 italic text-blue-500">CVPronto.it</div>
+        <p class="text-[8px] text-slate-600 uppercase font-black tracking-widest">© 2026 CVPronto.it | Un progetto per superare gli ATS.</p>
+    </footer>
+
+    <script>
+        let curLang = 'it';
+        const fields = ['jobOffer','fn','ln','role','email','phone','address','nat','dob','profile','exp','edu','sk1','sk2','l1','lic','coverLetter'];
+
+        function setLang(l) {
+            curLang = l;
+            document.getElementById('btn-it').className = l === 'it' ? 'px-3 py-1 text-xs font-bold rounded bg-blue-600 text-white' : 'px-3 py-1 text-xs font-bold rounded bg-slate-100';
+            document.getElementById('btn-en').className = l === 'en' ? 'px-3 py-1 text-xs font-bold rounded bg-blue-600 text-white' : 'px-3 py-1 text-xs font-bold rounded bg-slate-100';
+            
+            const t = {
+                it: { 
+                    target: "🎯 Targetizzazione Annuncio (Consigliato)", personal: "1. Info Personali", profile: "2. Profilo & Esperienza", skills: "3. Formazione & Skills", letterTitle: "✉️ Lettera di Presentazione IA",
+                    btnAiProfile: "✨ OTTIMIZZA IA", btnAiLetter: "✨ GENERA ORA",
+                    phJob: "Incolla l'annuncio per il matching ATS...", phProfile: "Il tuo profilo...", phExp: "Le tue esperienze (Azienda, Date, Mansioni)...", phEdu: "Scuole, Università, Corsi...", phCover: "L'IA scriverà qui basandosi sull'annuncio...",
+                    cvContacts: "Contatti", cvData: "Dati", cvProfile: "Profilo", cvExp: "Esperienza", cvEdu: "Istruzione", cvGdpr: "Autorizzo il trattamento dei dati (GDPR 679/16).",
+                    letterSubject: "Oggetto: Candidatura Professionale",
+                    wmCv: "ANTEPRIMA CVPRONTO.IT<br>SBLOCCA PER PDF PULITO", wmLetter: "ANTEPRIMA LETTERA IA<br>FILE PDF SEPARATO",
+                    payBtn: "💳 SBLOCCA DOWNLOAD PDF", gdprBanner: "Dati salvati nel tuo browser. IA in tempo reale.", gdprAccept: "Accetto"
+                },
+                en: { 
+                    target: "🎯 Job Targeting (Recommended)", personal: "1. Personal Info", profile: "2. Profile & Experience", skills: "3. Education & Skills", letterTitle: "✉️ AI Cover Letter",
+                    btnAiProfile: "✨ AI OPTIMIZE", btnAiLetter: "✨ GENERATE NOW",
+                    phJob: "Paste job description for ATS matching...", phProfile: "Your professional summary...", phExp: "Work Experience (Company, Dates, Roles)...", phEdu: "Education & Certifications...", phCover: "AI will write your cover letter here...",
+                    cvContacts: "Contacts", cvData: "Personal Info", cvProfile: "Summary", cvExp: "Experience", cvEdu: "Education", cvGdpr: "I hereby authorize the processing of my personal data (GDPR).",
+                    letterSubject: "Subject: Job Application",
+                    wmCv: "FULL PREVIEW<br>UNLOCK FOR CLEAN PDF", wmLetter: "AI COVER LETTER PREVIEW<br>SEPARATE PDF FILE",
+                    payBtn: "💳 UNLOCK PDF DOWNLOAD", gdprBanner: "Data saved locally in your browser. Real-time AI.", gdprAccept: "Accept"
+                }
+            };
+
+            const data = t[l];
+
+            // Aggiornamento Form e Pulsanti
+            document.getElementById('lbl-target').innerText = data.target;
+            document.getElementById('txt-personal').innerText = data.personal;
+            document.getElementById('txt-profile').innerText = data.profile;
+            document.getElementById('txt-skills').innerText = data.skills;
+            document.getElementById('txt-letter-title').innerText = data.letterTitle;
+            document.getElementById('btn-ai-profile').innerText = data.btnAiProfile;
+            document.getElementById('btn-ai-letter').innerText = data.btnAiLetter;
+
+            // Aggiornamento Placeholder
+            document.getElementById('jobOffer').placeholder = data.phJob;
+            document.getElementById('profile').placeholder = data.phProfile;
+            document.getElementById('exp').placeholder = data.phExp;
+            document.getElementById('edu').placeholder = data.phEdu;
+            document.getElementById('coverLetter').placeholder = data.phCover;
+
+            // Aggiornamento Anteprima PDF
+            document.getElementById('lbl-cv-contacts').innerText = data.cvContacts;
+            document.getElementById('lbl-cv-data').innerText = data.cvData;
+            document.getElementById('lbl-cv-profile').innerText = data.cvProfile;
+            document.getElementById('lbl-cv-exp').innerText = data.cvExp;
+            document.getElementById('lbl-cv-edu').innerText = data.cvEdu;
+            document.getElementById('lbl-cv-gdpr').innerText = data.cvGdpr;
+            document.getElementById('lbl-letter-subject').innerText = data.letterSubject;
+
+            // Watermark e Pulsanti Pagamento
+            document.getElementById('wm-txt-cv').innerHTML = data.wmCv;
+            document.getElementById('wm-txt-letter').innerHTML = data.wmLetter;
+            if(document.getElementById('btn-pay')) document.getElementById('btn-pay').innerText = data.payBtn;
+            document.getElementById('txt-gdpr-banner').innerHTML = data.gdprBanner + ' <a href="#" class="underline">Privacy</a>';
+            document.getElementById('btn-gdpr-accept').innerText = data.gdprAccept;
+        }
+
+        function switchTab(t) {
+            document.getElementById('tab-edit').classList.toggle('active', t === 'edit');
+            document.getElementById('tab-view').classList.toggle('active', t === 'view');
+            document.getElementById('tab-edit-btn').className = t === 'edit' ? 'flex-1 py-4 text-[10px] font-black border-b-2 border-blue-600 text-blue-600 uppercase tracking-widest' : 'flex-1 py-4 text-[10px] font-black border-b-2 border-transparent text-slate-400 uppercase tracking-widest';
+            document.getElementById('tab-view-btn').className = t === 'view' ? 'flex-1 py-4 text-[10px] font-black border-b-2 border-blue-600 text-blue-600 uppercase tracking-widest' : 'flex-1 py-4 text-[10px] font-black border-b-2 border-transparent text-slate-400 uppercase tracking-widest';
+        }
+
+        function sync() {
+            fields.forEach(f => {
+                const el = document.getElementById(f);
+                if(el) {
+                    localStorage.setItem('cv_' + f, el.value);
+                    const out = document.getElementById('out' + f.charAt(0).toUpperCase() + f.slice(1));
+                    if(out) out.innerText = el.value;
+                }
+            });
+            const name = (document.getElementById('fn').value + ' ' + document.getElementById('ln').value).trim() || 'Nome Cognome';
+            document.getElementById('outName').innerText = name;
+            document.getElementById('outNameL').innerText = name;
+            document.getElementById('outRole').innerText = document.getElementById('role').value || 'Titolo Professionale';
+            document.getElementById('outRoleL').innerText = document.getElementById('role').value || 'Titolo Professionale';
+            document.getElementById('initials').innerText = ((document.getElementById('fn').value[0] || '') + (document.getElementById('ln').value[0] || '')).toUpperCase() || 'CV';
+        }
+
+        function readImg(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    document.getElementById('outPhoto').src = e.target.result;
+                    document.getElementById('outPhoto').classList.remove('hidden');
+                    document.getElementById('initials').classList.add('hidden');
+                    localStorage.setItem('cv_photo', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
             }
         }
-    };
-</script>
 
+        async function ai(type, event) {
+            const btn = event.target;
+            const old = btn.innerText;
+            btn.disabled = true; btn.innerText = "⏳";
+            const field = type === 'letter' ? 'coverLetter' : type;
+            try {
+                const res = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        section: type, 
+                        prompt: document.getElementById(field).value || 'Genera contenuto professionale', 
+                        role: document.getElementById('role').value, 
+                        jobOffer: document.getElementById('jobOffer').value, 
+                        language: curLang 
+                    })
+                });
+                const text = await res.text();
+                document.getElementById(field).value = text;
+                sync();
+            } catch(e) { alert("Errore IA: Riprova"); }
+            finally { btn.disabled = false; btn.innerText = old; }
+        }
+
+        function enableTestMode() {
+            document.getElementById('wm-cv').style.display = 'none';
+            document.getElementById('wm-letter').style.display = 'none';
+            document.getElementById('checkout-box').innerHTML = `
+                <div class="flex gap-2">
+                    <button onclick="document.body.classList.add('print-cv'); window.print(); document.body.classList.remove('print-cv');" class="flex-1 bg-blue-600 text-white font-black py-4 rounded-xl text-xs uppercase shadow-lg hover:bg-blue-700">📥 Scarica PDF CV</button>
+                    <button onclick="document.body.classList.add('print-letter'); window.print(); document.body.classList.remove('print-letter');" class="flex-1 bg-indigo-600 text-white font-black py-4 rounded-xl text-xs uppercase shadow-lg hover:bg-indigo-700">📥 Scarica PDF Lettera</button>
+                </div>`;
+        }
+
+        window.onload = () => {
+            fields.forEach(f => {
+                const s = localStorage.getItem('cv_' + f);
+                if(s && document.getElementById(f)) document.getElementById(f).value = s;
+            });
+            const p = localStorage.getItem('cv_photo');
+            if(p) { document.getElementById('outPhoto').src = p; document.getElementById('outPhoto').classList.remove('hidden'); document.getElementById('initials').classList.add('hidden'); }
+            sync();
+            
+            if(new URLSearchParams(window.location.search).get('paid') === 'true') {
+                enableTestMode();
+            }
+        };
+    </script>
 </body>
 </html>
