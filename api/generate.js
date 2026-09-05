@@ -10,15 +10,17 @@ export default async function handler(req, res) {
     ? "CRITICAL MANDATE: Write EXCLUSIVELY in ENGLISH." 
     : "MANDATO CRITICO: Scrivi ESCLUSIVAMENTE in ITALIANO.";
 
+  const nameToUse = userName && userName !== 'Nome Cognome' ? userName : 'Mario Rossi';
+
   let instructions = `Sei un esperto HR Senior e ATS 2026. ${langRule}
-Candidato: ${userName || 'Mario Rossi'}.
+Candidato: ${nameToUse}.
 Ruolo target: ${role || 'Professionista'}.
 Annuncio di riferimento: ${jobOffer || 'Nessuno'}.
 
 REGOLA FONDAMENTALE: Fornisci UNICAMENTE il testo finale da inserire. Non inserire mai premesse, introduzioni (es. "Ecco il testo:"), spiegazioni, elenchi di opzioni multiple o marcatori markdown (es. **).`;
 
   if (section === 'letter') {
-    instructions += ` Scrivi una lettera di presentazione persuasiva di massimo 200 parole. Firmala con il nome del candidato: ${userName || 'Mario Rossi'}. Non inserire mai [Nome Cognome] tra parentesi.`;
+    instructions += ` Scrivi una lettera di presentazione persuasiva di MASSIMO 130 parole per rientrare in una pagina A4. Firmala con il nome reale: ${nameToUse}. NON scrivere mai parentesi o segnaposto come [Nome Cognome].`;
   } else if (section === 'skills') {
     instructions += " Suggerisci 6 competenze chiave pertinenti separate da virgola.";
   } else {
@@ -37,8 +39,9 @@ REGOLA FONDAMENTALE: Fornisci UNICAMENTE il testo finale da inserire. Non inseri
       let cleanText = data.candidates[0].content.parts[0].text
         .replace(/\*\*/g, '')
         .replace(/^[#-]\s*/gm, '')
-        .replace(/\[Nome Cognome\]/gi, userName || '')
-        .replace(/\[Tuo Nome\]/gi, userName || '')
+        .replace(/\[Nome Cognome\]/gi, nameToUse)
+        .replace(/\[Tuo Nome\]/gi, nameToUse)
+        .replace(/\[\s*\]/g, '')
         .trim();
       res.status(200).send(cleanText);
     } else {
