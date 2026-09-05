@@ -20,11 +20,11 @@ Annuncio di riferimento: ${jobOffer || 'Nessuno'}.
 REGOLA FONDAMENTALE: Fornisci UNICAMENTE il testo finale da inserire. Non inserire mai premesse, introduzioni (es. "Ecco il testo:"), spiegazioni, elenchi di opzioni multiple o marcatori markdown (es. **).`;
 
   if (section === 'letter') {
-    instructions += ` Scrivi una lettera di presentazione persuasiva di MASSIMO 130 parole per rientrare in una pagina A4. Firmala con il nome reale: ${nameToUse}. NON scrivere mai parentesi o segnaposto come [Nome Cognome].`;
+    instructions += ` Scrivi una lettera di presentazione persuasiva di MASSIMO 110 parole per rientrare in 1 sola pagina A4. Firmala con il nome reale: ${nameToUse}. NON scrivere mai parentesi o segnaposto come [Nome Cognome].`;
   } else if (section === 'skills') {
     instructions += " Suggerisci 6 competenze chiave pertinenti separate da virgola.";
   } else {
-    instructions += " Scrivi un singolo paragrafo professionale ottimizzato per filtri ATS che integri le keyword dell'annuncio.";
+    instructions += " Scrivi un singolo paragrafo professionale di max 90 parole ottimizzato per filtri ATS che integri le keyword dell'annuncio.";
   }
 
   try {
