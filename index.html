@@ -22,11 +22,13 @@
         
         input, textarea { background: #fafafa; border: 1px solid #d1d5db; border-radius: 8px; padding: 10px; font-size: 0.85rem; width: 100%; }
         @media (max-width: 1023px) { .tab-content { display: none; } .tab-content.active { display: block; } .preview-page { transform: scale(0.95); transform-origin: top center; } }
+        
         @media print {
-            .no-print { display: none !important; }
+            body { background: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print, header, footer, section, #tab-edit, #checkout-box { display: none !important; }
             .print-cv #letter-page { display: none !important; }
             .print-letter #cv-page { display: none !important; }
-            .preview-page { box-shadow: none !important; border: none !important; margin: 0 !important; width: 100% !important; }
+            .preview-page { box-shadow: none !important; border: none !important; margin: 0 !important; width: 100% !important; height: 100vh !important; position: absolute !important; top: 0 !important; left: 0 !important; }
             @page { size: A4 portrait; margin: 0; }
         }
     </style>
@@ -66,7 +68,7 @@
                 <!-- JOB TARGET -->
                 <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-200">
                     <label id="lbl-target" class="block text-emerald-800 font-black text-[10px] mb-2 uppercase">🎯 Targetizzazione Annuncio (Consigliato)</label>
-                    <textarea id="jobOffer" rows="3" placeholder="Incolla l'annuncio per il matching ATS..." oninput="sync()"></textarea>
+                    <textarea id="jobOffer" rows="4" class="overflow-y-auto resize-y" placeholder="Incolla l'annuncio per il matching ATS..." oninput="sync()"></textarea>
                 </div>
 
                 <!-- 1. PERSONAL -->
@@ -167,7 +169,7 @@
                         <p id="outRoleL" class="text-xs text-blue-600 font-black uppercase"></p>
                     </div>
                     <p id="lbl-letter-subject" class="text-[10px] font-black mb-6 uppercase tracking-widest text-slate-400">Oggetto: Candidatura Professionale</p>
-                    <p id="outLetter" class="text-[11px] text-slate-700 leading-loose whitespace-pre-wrap">La tua lettera apparirà qui...</p>
+                    <p id="outCoverLetter" class="text-[11px] text-slate-700 leading-loose whitespace-pre-wrap">La tua lettera apparirà qui...</p>
                 </div>
 
                 <!-- CHECKOUT AREA -->
@@ -185,37 +187,31 @@
     <section class="max-w-7xl mx-auto px-6 py-20 no-print border-t border-slate-200 mt-16">
         <h2 id="blog-main-title" class="text-3xl font-black text-center mb-12 uppercase tracking-tighter italic text-slate-800">Guide Strategiche per il Lavoro (ATS 2026)</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
             <article class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
                 <div class="text-3xl mb-4">🤖</div>
                 <h3 id="art1-title" class="font-black text-lg mb-2 text-blue-600">Come superare i filtri ATS nel 2026</h3>
                 <p id="art1-desc" class="text-xs text-slate-600 leading-relaxed">L'80% dei curriculum viene scartato dai software automatici. CVPronto analizza il testo dell'annuncio di lavoro e inserisce le keyword esatte necessarie per posizionarti in cima alle ricerche dei recruiter.</p>
             </article>
-
             <article class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
                 <div class="text-3xl mb-4">🎯</div>
                 <h3 id="art2-title" class="font-black text-lg mb-2 text-indigo-600">L'importanza della Targetizzazione</h3>
                 <p id="art2-desc" class="text-xs text-slate-600 leading-relaxed">Inviare lo stesso CV generico a decine di aziende non funziona più. Personalizzare il Profilo e le Esperienze in base al ruolo aumenta le possibilità di colloquio fino al 300%.</p>
             </article>
-
             <article class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
                 <div class="text-3xl mb-4">✉️</div>
                 <h3 id="art3-title" class="font-black text-lg mb-2 text-emerald-600">Lettera di Presentazione Sartoriale</h3>
                 <p id="art3-desc" class="text-xs text-slate-600 leading-relaxed">Le lettere standard vengono ignorate. L'IA di CVPronto genera una lettera di accompagnamento persuasiva e personalizzata che evidenzia subito perché sei il candidato ideale.</p>
             </article>
-
             <article class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
                 <div class="text-3xl mb-4">🌍</div>
                 <h3 id="art4-title" class="font-black text-lg mb-2 text-amber-600">Curriculum in Inglese Perfetto</h3>
                 <p id="art4-desc" class="text-xs text-slate-600 leading-relaxed">Tradurre letteralmente il CV dall'italiano genera errori di terminologia aziendale. Il nostro motore IA adatta le tue competenze secondo i canoni ufficiali usati dalle multinazionali USA/UK.</p>
             </article>
-
             <article class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
                 <div class="text-3xl mb-4">📄</div>
                 <h3 id="art5-title" class="font-black text-lg mb-2 text-rose-600">Formato PDF e Layout A4 Certificate</h3>
                 <p id="art5-desc" class="text-xs text-slate-600 leading-relaxed">Layout puliti senza colonne complesse o grafica pesante che mandano in confusione i lettori ottici. Scarica file PDF leggeri, perfetti per la stampa ed esenti da bug di impaginazione.</p>
             </article>
-
         </div>
     </section>
 
@@ -236,6 +232,7 @@
             
             const t = {
                 it: { 
+                    tabEdit: "1. Compilazione", tabView: "2. Anteprima PDF",
                     target: "🎯 Targetizzazione Annuncio (Consigliato)", personal: "1. Info Personali", profile: "2. Profilo Professionale", exp: "3. Esperienza Lavorativa", skills: "4. Formazione & Competenze", letterTitle: "✉️ Lettera di Presentazione IA",
                     btnAiProfile: "✨ OTTIMIZZA IA", btnAiExp: "✨ OTTIMIZZA IA", btnAiLetter: "✨ GENERA ORA",
                     phFn: "Nome *", phLn: "Cognome *", phRole: "Ruolo / Titolo *", phEmail: "Email *", phPhone: "Telefono *", phAddr: "Città, Italia", phNat: "Nazionalità", phDob: "Data di Nascita",
@@ -253,6 +250,7 @@
                     art5T: "Formato PDF e Layout A4 Certificate", art5D: "Layout puliti senza colonne complesse che confondono i lettori ottici. Scarica file PDF leggeri, perfetti per la stampa."
                 },
                 en: { 
+                    tabEdit: "1. Editor", tabView: "2. PDF Preview",
                     target: "🎯 Job Targeting (Recommended)", personal: "1. Personal Info", profile: "2. Professional Summary", exp: "3. Work Experience", skills: "4. Education & Skills", letterTitle: "✉️ AI Cover Letter",
                     btnAiProfile: "✨ AI OPTIMIZE", btnAiExp: "✨ AI OPTIMIZE", btnAiLetter: "✨ GENERATE NOW",
                     phFn: "First Name *", phLn: "Last Name *", phRole: "Job Title *", phEmail: "Email *", phPhone: "Phone *", phAddr: "City, Country", phNat: "Nationality", phDob: "Date of Birth",
@@ -273,6 +271,10 @@
 
             const data = t[l];
 
+            // Tab Mobile
+            document.getElementById('tab-edit-btn').innerText = data.tabEdit;
+            document.getElementById('tab-view-btn').innerText = data.tabView;
+
             // Aggiornamento Titoli Form
             document.getElementById('lbl-target').innerText = data.target;
             document.getElementById('txt-personal').innerText = data.personal;
@@ -284,7 +286,7 @@
             document.getElementById('btn-ai-exp').innerText = data.btnAiExp;
             document.getElementById('btn-ai-letter').innerText = data.btnAiLetter;
 
-            // Aggiornamento Placeholder Campi Singoli
+            // Aggiornamento Placeholder
             document.getElementById('fn').placeholder = data.phFn;
             document.getElementById('ln').placeholder = data.phLn;
             document.getElementById('role').placeholder = data.phRole;
@@ -372,6 +374,10 @@
             const old = btn.innerText;
             btn.disabled = true; btn.innerText = "⏳";
             const field = type === 'letter' ? 'coverLetter' : type;
+            const fn = document.getElementById('fn').value || '';
+            const ln = document.getElementById('ln').value || '';
+            const fullName = (fn + ' ' + ln).trim() || 'Mario Rossi';
+
             try {
                 const res = await fetch('/api/generate', {
                     method: 'POST',
@@ -381,7 +387,8 @@
                         prompt: document.getElementById(field).value || 'Genera contenuto professionale', 
                         role: document.getElementById('role').value, 
                         jobOffer: document.getElementById('jobOffer').value, 
-                        language: curLang 
+                        language: curLang,
+                        userName: fullName
                     })
                 });
                 const text = await res.text();
