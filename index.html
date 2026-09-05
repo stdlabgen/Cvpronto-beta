@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVPronto.it | Il CV Builder IA con Targetizzazione Annunci</title>
+    <meta name="description" content="Supera i filtri ATS con il matching IA sartoriale. Crea CV e Lettera gratis in 60s. Nessun abbonamento.">
+    
+    <!-- TAILWIND CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .preview-container { width: 100%; max-width: 210mm; min-height: 297mm; background: white; margin: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; border: 1px solid #e2e8f0; }
+        .cv-grid { display: grid; grid-template-columns: 32% 68%; min-height: 297mm; }
+        .watermark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.2); backdrop-filter: blur(1px); z-index: 50; pointer-events: none; }
+        .watermark-badge { transform: rotate(-25deg); border: 2px dashed #ef4444; color: #ef4444; padding: 15px; font-weight: 800; background: white; border-radius: 8px; font-size: 1rem; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        /* CSS PER STAMPA SEPARATA */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; }
+            .preview-container { border: none !important; box-shadow: none !important; margin: 0 !important; width: 100% !important; }
+            .print-cv #cover-letter-paper { display: none !important; }
+            .print-letter #cv-paper { display: none !important; }
+            @page { size: A4 portrait; margin: 0; }
+        }
+    </style>
+</head>
+<body class="text-slate-900">
+
+    <!-- HEADER -->
+    <header class="bg-white border-b sticky top-0 z-40 p-4 no-print">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex flex-col">
+                <span class="text-xl font-extrabold text-blue-600 tracking-tight">CVPronto.it</span>
+                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Targetizzazione ATS IA</span>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="setLang('it')" id="btn-it" class="px-3 py-1 text-xs font-bold rounded bg-blue-600 text-white">ITA</button>
+                <button onclick="setLang('en')" id="btn-en" class="px-3 py-1 text-xs font-bold rounded bg-slate-100">ENG</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-4 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- EDITOR -->
+        <div class="space-y-6 no-print">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+                
+                <!-- BOX ANNUNCIO -->
+                <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl">
+                    <h3 class="text-emerald-800 font-bold text-sm mb-1">🎯 Annuncio di Lavoro Target</h3>
+                    <p class="text-[10px] text-emerald-600 mb-2">Incolla qui l'offerta per attivare il matching delle keyword.</p>
+                    <textarea id="jobOffer" class="w-full p-3 text-sm rounded-lg border-emerald-200 focus:ring-emerald-500" rows="3" oninput="updatePreview()"></textarea>
+                </div>
+
+                <!-- DATI PERSONALI -->
+                <div class="space-y-4">
+                    <h2 class="font-extrabold text-lg flex items-center gap-2"><span class="text-blue-600">01.</span> Dati Personali</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" id="fn" placeholder="Nome" class="p-3 text-sm border rounded-xl w-full" oninput="updatePreview()">
+                        <input type="text" id="ln" placeholder="Cognome" class="p-3 text-sm border rounded-xl w-full" oninput="updatePreview()">
+                        <input type="text" id="role" placeholder="Ruolo Desiderato" class="p-3 text-sm border rounded-xl w-full col-span-2" oninput="updatePreview()">
+                        <input type="email" id="email" placeholder="Email" class="p-3 text-sm border rounded-xl w-full" oninput="updatePreview()">
+                        <input type="tel" id="phone" placeholder="Telefono" class="p-3 text-sm border rounded-xl w-full" oninput="updatePreview()">
+                    </div>
+                </div>
+
+                <!-- SEZIONI IA -->
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-extrabold text-lg"><span class="text-blue-600">02.</span> Profilo & Esperienze</h2>
+                        <button onclick="aiAction('profile')" class="bg-blue-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase">✨ Ottimizza IA</button>
+                    </div>
+                    <textarea id="profile" class="w-full p-3 text-sm border rounded-xl" rows="3" placeholder="Descrivi brevemente chi sei..." oninput="updatePreview()"></textarea>
+                    <textarea id="exp" class="w-full p-3 text-sm border rounded-xl" rows="5" placeholder="Elenca le tue esperienze lavorative..." oninput="updatePreview()"></textarea>
+                </div>
+
+                <!-- LETTERA IA -->
+                <div class="bg-indigo-50 border border-indigo-100 p-5 rounded-2xl space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-extrabold text-indigo-900">✉️ Lettera di Presentazione</h2>
+                        <button onclick="aiAction('letter')" class="bg-indigo-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full">✨ Genera Lettera IA</button>
+                    </div>
+                    <textarea id="coverLetter" class="w-full p-3 text-sm border border-indigo-200 rounded-xl" rows="4" placeholder="La lettera apparirà qui e nell'anteprima..." oninput="updatePreview()"></textarea>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="relative">
+            <div class="sticky top-24 space-y-6">
+                <div id="cv-paper" class="preview-container">
+                    <div id="watermark" class="watermark"><div class=\"watermark-badge\">ANTEPRIMA CVPRONTO.IT<br>SBLOCCA PDF SOLO €2.99</div></div>
+                    <div class="cv-grid">
+                        <div class="bg-slate-800 text-white p-6 space-y-6">
+                            <div id="initials" class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-xl font-bold">CV</div>
+                            <div class="text-[10px] space-y-2">
+                                <p class="font-bold border-b border-slate-600 text-blue-400 uppercase">Contatti</p>
+                                <p id="outEmail"></p>
+                                <p id="outPhone"></p>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h1 id="outName" class="text-2xl font-extrabold text-slate-900">Nome Cognome</h1>
+                            <p id="outRole" class="text-xs font-bold text-blue-600 uppercase mb-6"></p>
+                            <div class="space-y-4 text-[10px]">
+                                <section>
+                                    <p class="font-bold border-b mb-1 uppercase">Profilo</p>
+                                    <p id="outProfile" class="text-slate-600 leading-relaxed"></p>
+                                </section>
+                                <section>
+                                    <p class="font-bold border-b mb-1 uppercase">Esperienza</p>
+                                    <p id="outExp" class="text-slate-600 leading-relaxed whitespace-pre-wrap"></p>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LETTERA PAPER -->
+                <div id="cover-letter-paper" class="preview-container p-12 hidden">
+                    <div class="border-b pb-4 mb-6">
+                        <h2 id="outNameL" class="text-xl font-bold"></h2>
+                        <p id="outRoleL" class="text-xs text-blue-600 font-bold uppercase"></p>
+                    </div>
+                    <p id="outLetter" class="text-[11px] text-slate-700 leading-relaxed whitespace-pre-wrap"></p>
+                </div>
+
+                <!-- CHECKOUT -->
+                <div class="bg-white border-2 border-emerald-500 rounded-3xl p-6 shadow-xl text-center no-print" id="checkout-box">
+                    <span class="bg-red-500 text-white text-[9px] font-bold px-2 py-1 rounded-full uppercase">Prezzo Studio: €2.99</span>
+                    <button onclick="pay()" class="w-full mt-4 bg-emerald-500 text-white font-extrabold py-4 rounded-2xl shadow-lg">💳 SBLOCCA DOWNLOAD PDF</button>
+                    <p class="text-[9px] text-slate-400 mt-2">Pagamento sicuro Stripe • Sblocco istantaneo</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SEO BLOG -->
+    <section class="max-w-5xl mx-auto px-4 py-20 no-print">
+        <h2 class="text-3xl font-extrabold text-center mb-12">Guide Strategiche per la tua Candidatura</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <article class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                <h3 class="font-bold text-lg mb-2 text-blue-600">1. Come superare i filtri ATS nel 2025</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">Gli Applicant Tracking Systems scansionano il tuo CV in cerca di parole chiave specifiche. Con CVPronto.it, l'IA analizza l'annuncio e inserisce i termini esatti per garantirti il passaggio alla fase umana.</p>
+            </article>
+            <article class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                <h3 class="font-bold text-lg mb-2 text-blue-600">2. Lettera di Presentazione IA: il tuo asso nella manica</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">Una lettera generica viene cestinata. La nostra IA scrive testi personalizzati basati sulla vision aziendale, aumentando del 60% la possibilità di essere richiamati.</p>
+            </article>
+            <article class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                <h3 class="font-bold text-lg mb-2 text-blue-600">3. CV in Inglese: oltre la semplice traduzione</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">Candidarsi all'estero richiede un adattamento terminologico. La funzione multilingue di CVPronto.it trasforma la tua esperienza in standard professionali internazionali.</p>
+            </article>
+            <article class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                <h3 class="font-bold text-lg mb-2 text-blue-600">4. Privacy & Sicurezza: I tuoi dati sono al sicuro</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">A differenza di altri builder, noi non salviamo i tuoi dati sensibili. Tutto rimane nel tuo browser. Usiamo l'IA solo per ottimizzare i testi in modo anonimo.</p>
+            </article>
+        </div>
+        <div class="mt-12 text-center text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+            © CVPronto.it | Mission: Superare gli ATS | Un progetto StdLab | @stdlabgen
+        </div>
+    </section>
+
+    <script>
+        let lang = 'it';
+        function setLang(l) { 
+            lang = l; 
+            document.getElementById('btn-it').className = l === 'it' ? 'px-3 py-1 text-xs font-bold rounded bg-blue-600 text-white' : 'px-3 py-1 text-xs font-bold rounded bg-slate-100';
+            document.getElementById('btn-en').className = l === 'en' ? 'px-3 py-1 text-xs font-bold rounded bg-blue-600 text-white' : 'px-3 py-1 text-xs font-bold rounded bg-slate-100';
+        }
+
+        function updatePreview() {
+            const fn = document.getElementById('fn').value;
+            const ln = document.getElementById('ln').value;
+            const role = document.getElementById('role').value;
+            
+            document.getElementById('outName').innerText = fn + ' ' + ln || 'Nome Cognome';
+            document.getElementById('outNameL').innerText = fn + ' ' + ln;
+            document.getElementById('outRole').innerText = role || 'Ruolo Desiderato';
+            document.getElementById('outRoleL').innerText = role;
+            document.getElementById('outEmail').innerText = document.getElementById('email').value;
+            document.getElementById('outPhone').innerText = document.getElementById('phone').value;
+            document.getElementById('outProfile').innerText = document.getElementById('profile').value;
+            document.getElementById('outExp').innerText = document.getElementById('exp').value;
+            
+            const letter = document.getElementById('coverLetter').value;
+            const letterPaper = document.getElementById('cover-letter-paper');
+            if(letter) {
+                letterPaper.classList.remove('hidden');
+                document.getElementById('outLetter').innerText = letter;
+            } else {
+                letterPaper.classList.add('hidden');
+            }
+            
+            document.getElementById('initials').innerText = (fn[0] || '') + (ln[0] || '');
+        }
+
+        async function aiAction(type) {
+            const btn = event.target;
+            const old = btn.innerText;
+            btn.disabled = true;
+            btn.innerText = "⏳...";
+
+            const payload = {
+                section: type,
+                prompt: type === 'letter' ? 'Genera lettera' : document.getElementById(type).value,
+                role: document.getElementById('role').value,
+                jobOffer: document.getElementById('jobOffer').value,
+                language: lang
+            };
+
+            try {
+                const res = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const text = await res.text();
+                if(type === 'letter') document.getElementById('coverLetter').value = text;
+                else document.getElementById(type).value = text;
+                updatePreview();
+            } catch(e) { alert("Errore IA"); }
+            finally { btn.disabled = false; btn.innerText = old; }
+        }
+
+        function pay() {
+            window.location.href = "https://buy.stripe.com/fZudR83LpdsCdrG2219EI03";
+        }
+
+        // Simula sblocco se pagato (da URL ?paid=true)
+        window.onload = () => {
+            if(new URLSearchParams(window.location.search).get('paid') === 'true') {
+                document.getElementById('watermark').style.display = 'none';
+                document.getElementById('checkout-box').innerHTML = `
+                    <div class="flex gap-2">
+                        <button onclick="document.body.classList.add('print-cv'); window.print();" class="flex-1 bg-blue-600 text-white font-bold py-3 rounded-xl">PDF CV</button>
+                        <button onclick="document.body.classList.add('print-letter'); window.print();" class="flex-1 bg-indigo-600 text-white font-bold py-3 rounded-xl">PDF LETTERA</button>
+                    </div>
+                `;
+            }
+        };
+    </script>
+</body>
+</html>
