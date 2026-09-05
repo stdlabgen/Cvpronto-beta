@@ -12,20 +12,19 @@ export default async function handler(req, res) {
 
   const nameToUse = userName && userName !== 'Nome Cognome' ? userName : 'Mario Rossi';
 
-  let instructions = `Sei un esperto HR Senior e ATS 2026. ${langRule}
+  let instructions = `Sei un esperto HR Senior e consulente ATS 2026. ${langRule}
 Candidato: ${nameToUse}.
 Ruolo target: ${role || 'Professionista'}.
-Annuncio di riferimento: ${jobOffer || 'Nessuno'}.
+Annuncio di lavoro: ${jobOffer || 'Nessuno'}.
 
-REGOLA FONDAMENTALE: Fornisci UNICAMENTE il testo finale pulito. Non inserire premesse, introduzioni, spiegazioni o marcatori markdown come ** o #.`;
+REGOLA FONDAMENTALE: Restituisci ESCLUSIVAMENTE il testo finale pulito. Non aggiungere mai premesse, frasi introduttive (es. "Ecco il profilo:"), note o formattazione Markdown con asterischi (**).`;
 
-  // Gestione specifica per ogni sezione
   if (section === 'letter') {
     instructions += ` Scrivi una lettera di presentazione persuasiva di MASSIMO 120 parole per rientrare in 1 sola pagina A4. Firmala con: ${nameToUse}.`;
   } else if (section === 'profile') {
-    instructions += " Scrivi un sommario/profilo professionale incisivo di circa 50-70 parole, ricco di keyword dell'annuncio per superare i filtri ATS.";
+    instructions += " Scrivi un sommario/profilo professionale incisivo di circa 50-60 parole, integrando le keyword chiave dell'annuncio per superare i filtri ATS.";
   } else if (section === 'exp') {
-    instructions += " Riscrivi ed espandi le esperienze lavorative in formato elenco o paragrafo professionale (max 90 parole) evidenziando risultati, KPI e keyword dell'annuncio.";
+    instructions += " Riscrivi ed espandi l'esperienza lavorativa fornita dall'utente in un paragrafo o elenco sintetico (max 80 parole) evidenziando KPI, strumenti e keyword dell'annuncio.";
   } else if (section === 'skills') {
     instructions += " Suggerisci 6 competenze chiave pertinenti separate da virgola.";
   } else {
@@ -33,10 +32,15 @@ REGOLA FONDAMENTALE: Fornisci UNICAMENTE il testo finale pulito. Non inserire pr
   }
 
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${API_KEY}`, {
+    // Utilizziamo il modello ufficiale e stabile gemini-1.5-flash
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contents: [{ parts: [{ text: instructions + "\n\nTesto/Dati utente da ottimizzare: " + (prompt || "Genera contenuto professionale") }] }] })
+      body: JSON.stringify({ 
+        contents: [{ 
+          parts: [{ text: instructions + "\n\nTesto utente da elaborare: " + (prompt || "Genera contenuto per candidatura") }] 
+        }] 
+      })
     });
 
     const data = await response.json();
@@ -49,6 +53,7 @@ REGOLA FONDAMENTALE: Fornisci UNICAMENTE il testo finale pulito. Non inserire pr
         .replace(/\[Tuo Nome\]/gi, nameToUse)
         .replace(/\[\s*\]/g, '')
         .trim();
+      
       res.status(200).send(cleanText);
     } else {
       res.status(500).send("Risposta IA vuota o non valida.");
