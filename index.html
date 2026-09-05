@@ -50,8 +50,19 @@
 
     <!-- GDPR BANNER -->
     <div id="gdpr" class="fixed bottom-4 left-4 right-4 bg-slate-900 text-white p-4 rounded-2xl z-[100] flex flex-col md:flex-row items-center justify-between gap-4 no-print shadow-2xl border border-slate-700">
-        <p id="txt-gdpr-banner" class="text-[10px] text-slate-300 uppercase font-bold tracking-widest">Dati salvati nel tuo browser. IA in tempo reale. <a href="#" class="underline">Privacy</a></p>
+        <p id="txt-gdpr-banner" class="text-[10px] text-slate-300 uppercase font-bold tracking-widest">Dati salvati in locale nel tuo browser. IA in tempo reale. <a href="javascript:void(0)" onclick="togglePrivacyModal(true)" class="underline text-blue-400">Privacy Policy</a></p>
         <button onclick="document.getElementById('gdpr').remove()" id="btn-gdpr-accept" class="bg-blue-600 px-8 py-2 rounded-xl text-xs font-black uppercase">Accetto</button>
+    </div>
+
+    <!-- PRIVACY MODAL -->
+    <div id="privacyModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[200] hidden items-center justify-center p-4 no-print">
+        <div class="bg-white p-6 rounded-3xl max-w-lg w-full max-h-[80vh] overflow-y-auto shadow-2xl border border-slate-200 space-y-4 text-xs text-slate-600">
+            <h3 class="text-base font-black text-slate-800 uppercase border-b pb-2">🛡️ Informativa sulla Privacy - CVPronto.it</h3>
+            <p><b>1. Trasparenza e Zero Abbonamenti:</b> CVPronto.it non richiede registrazioni, né memorizza carte di credito. L'acquisto di 2,99€ è una-tantum per il singolo download e non comporta alcun addebito ricorsivo o abbonamento nascosto.</p>
+            <p><b>2. Elaborazione dei Dati:</b> I dati inseriti nel form vengono salvati esclusivamente nella memoria locale del tuo browser (localStorage) e inviati temporaneamente all'IA solo per la rigenerazione del testo. Nessun CV viene salvato in modo permanente nei nostri server.</p>
+            <p><b>3. Pagamenti:</b> Le transazioni sono gestite integralmente tramite la piattaforma sicura Stripe con crittografia SSL a 256-bit.</p>
+            <button onclick="togglePrivacyModal(false)" class="w-full bg-slate-900 text-white font-black py-3 rounded-xl text-xs uppercase">Chiudi</button>
+        </div>
     </div>
 
     <!-- HEADER -->
@@ -206,10 +217,26 @@
                 </div>
 
                 <!-- CHECKOUT AREA -->
-                <div id="checkout-box" class="bg-white border-4 border-emerald-500 rounded-[2.5rem] p-8 shadow-2xl text-center no-print space-y-3">
-                    <div class="text-4xl font-black text-slate-900 mb-2 italic">€2,99 <span class="text-sm text-slate-300 font-normal line-through">€14.99</span></div>
+                <div id="checkout-box" class="bg-white border-4 border-emerald-500 rounded-[2.5rem] p-8 shadow-2xl text-center no-print space-y-4">
+                    <div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-800 text-[10px] font-black px-4 py-1.5 rounded-full border border-emerald-200 uppercase tracking-wide">
+                        <span>🛡️ ACQUISTO SICURO • ZERO ABBONAMENTI</span>
+                    </div>
+
+                    <div class="text-4xl font-black text-slate-900 italic">€2,99 <span class="text-sm text-slate-300 font-normal line-through">€14.99</span></div>
+                    
                     <button onclick="window.location.href='https://buy.stripe.com/fZudR83LpdsCdrG2219EI03'" id="btn-pay" class="w-full bg-emerald-500 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-emerald-600 transition-all text-sm uppercase">💳 SBLOCCA DOWNLOAD PDF</button>
-                    <p class="text-amber-500 text-[10px] font-black uppercase mt-2">★ ★ ★ ★ ★ (4.9/5 TrustScore)</p>
+                    
+                    <div class="flex items-center justify-center gap-4 text-slate-400 text-[11px] pt-1">
+                        <span class="flex items-center gap-1 font-semibold">🔒 Crittografia SSL 256-bit</span>
+                        <span>•</span>
+                        <span class="flex items-center gap-1 font-semibold">⚡ Pagamento Diretto Stripe</span>
+                    </div>
+
+                    <p class="text-[9px] text-slate-400 font-bold uppercase leading-tight">
+                        Pagamento unico una tantum. Nessun addebito mensile o costo nascosto. Accetti la fornitura immediata del contenuto digitale e la rinuncia al recesso.
+                    </p>
+                    
+                    <p class="text-amber-500 text-[10px] font-black uppercase mt-1">★ ★ ★ ★ ★ (4.9/5 TrustScore)</p>
                 </div>
             </div>
         </div>
@@ -248,8 +275,13 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-white py-12 px-6 no-print text-center">
-        <div class="text-2xl font-black mb-6 italic text-blue-500">CVPronto.it</div>
+    <footer class="bg-slate-900 text-white py-12 px-6 no-print text-center space-y-4">
+        <div class="text-2xl font-black italic text-blue-500">CVPronto.it</div>
+        <div class="text-xs text-slate-400 space-x-4">
+            <a href="javascript:void(0)" onclick="togglePrivacyModal(true)" class="hover:underline">Privacy Policy</a>
+            <span>•</span>
+            <a href="javascript:void(0)" onclick="togglePrivacyModal(true)" class="hover:underline">Termini di Servizio</a>
+        </div>
         <p class="text-[8px] text-slate-600 uppercase font-black tracking-widest">© 2026 CVPronto.it | Un progetto per superare gli ATS.</p>
     </footer>
 
@@ -259,6 +291,11 @@
 
         function toggleGuide(show) {
             const modal = document.getElementById('guideModal');
+            modal.style.display = show ? 'flex' : 'none';
+        }
+
+        function togglePrivacyModal(show) {
+            const modal = document.getElementById('privacyModal');
             modal.style.display = show ? 'flex' : 'none';
         }
 
@@ -278,7 +315,7 @@
                     cvContacts: "Contatti", cvData: "Dati", cvProfile: "Profilo", cvExp: "Esperienza", cvEdu: "Istruzione", cvGdpr: "Autorizzo il trattamento dei dati (GDPR 679/16).",
                     letterSubject: "Oggetto: Candidatura Professionale",
                     wmCv: "ANTEPRIMA CVPRONTO.IT<br>SBLOCCA PER PDF PULITO", wmLetter: "ANTEPRIMA LETTERA IA<br>FILE PDF SEPARATO",
-                    payBtn: "💳 SBLOCCA DOWNLOAD PDF", gdprBanner: "Dati salvati nel tuo browser. IA in tempo reale.", gdprAccept: "Accetto",
+                    payBtn: "💳 SBLOCCA DOWNLOAD PDF", gdprBanner: "Dati salvati in locale nel tuo browser. IA in tempo reale.", gdprAccept: "Accetto",
                     blogMain: "Guide Strategiche per il Lavoro (ATS 2026)",
                     art1T: "Come superare i filtri ATS nel 2026", art1D: "L'80% dei curriculum viene scartato dai software automatici. CVPronto analizza l'annuncio e inserisce le keyword esatte necessarie.",
                     art2T: "L'importanza della Targetizzazione", art2D: "Inviare lo stesso CV generico non funziona più. Personalizzare il Profilo in base al ruolo aumenta le possibilità fino al 300%.",
@@ -350,7 +387,7 @@
             document.getElementById('wm-txt-cv').innerHTML = data.wmCv;
             document.getElementById('wm-txt-letter').innerHTML = data.wmLetter;
             if(document.getElementById('btn-pay')) document.getElementById('btn-pay').innerText = data.payBtn;
-            document.getElementById('txt-gdpr-banner').innerHTML = data.gdprBanner + ' <a href="#" class="underline">Privacy</a>';
+            document.getElementById('txt-gdpr-banner').innerHTML = data.gdprBanner + ' <a href="javascript:void(0)" onclick="togglePrivacyModal(true)" class="underline text-blue-400">Privacy Policy</a>';
             document.getElementById('btn-gdpr-accept').innerText = data.gdprAccept;
 
             document.getElementById('blog-main-title').innerText = data.blogMain;
@@ -455,4 +492,3 @@
     </script>
 </body>
 </html>
-
