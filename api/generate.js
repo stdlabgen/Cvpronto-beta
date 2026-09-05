@@ -1,19 +1,16 @@
 export default async function handler(req, res) {
-  // Accetta solo richieste POST
-  if (req.method !== 'POST') {
-    return res.status(405).send('Metodo non consentito');
-  }
+  if (req.method !== 'POST') return res.status(405).send('Metodo non consentito');
 
   const { section, prompt, role, jobOffer, language } = req.body;
   const API_KEY = process.env.GEMINI_API_KEY;
 
-  // Istruzioni per l'IA: Missione Superare ATS
-  let instructions = `Sei un esperto HR e specialista ATS. Ottimizza per il ruolo: ${role}. Lingua: ${language}. Annuncio: ${jobOffer}.`;
-  
-  if (section === 'cover_letter') {
-    instructions += " Scrivi una lettera di presentazione professionale e convincente di max 200 parole.";
+  if (!API_KEY) return res.status(500).send("Errore: Chiave API mancante su Vercel.");
+
+  let instructions = `Sei un esperto HR e ATS. Ottimizza per il ruolo: ${role}. Lingua: ${language}. Annuncio: ${jobOffer}.`;
+  if (section === 'letter') {
+    instructions += " Scrivi una lettera di presentazione professionale di max 200 parole.";
   } else {
-    instructions += " Ottimizza il testo per superare i filtri ATS, usando le keyword dell'annuncio. Non usare grassetti o introduzioni, solo il testo pulito.";
+    instructions += " Ottimizza per filtri ATS, usa keyword dell'annuncio. Solo testo pulito, no grassetti.";
   }
 
   try {
@@ -21,14 +18,23 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: instructions + "\n\nTesto da elaborare: " + prompt }] }]
+        contents: [{ parts: [{ text: instructions + "\n\nTesto: " + (prompt || "Genera testo professionale") }] }]
       })
     });
 
     const data = await response.json();
+
+    if (data.error) {
+      return res.status(500).send("Errore Google API: " + data.error.message);
+    }
+
+    if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
+      return res.status(500).send("L'IA non ha risposto. Controlla la chiave o riprova.");
+    }
+
     const aiText = data.candidates[0].content.parts[0].text;
     res.status(200).send(aiText);
   } catch (error) {
-    res.status(500).send("Errore IA: " + error.message);
+    res.status(500).send("Errore connessione: " + error.message);
   }
 }
