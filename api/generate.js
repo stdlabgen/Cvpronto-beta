@@ -60,4 +60,4 @@ export default async function handler(req, res) {
   } catch (error) {
     return res.status(500).send("Errore di connessione: " + error.message);
   }
-}
+} 
