@@ -60,11 +60,29 @@
             <span class="text-blue-600 font-black text-xl italic tracking-tighter">CVPronto.it</span>
             <span class="text-[9px] font-bold text-slate-400 uppercase">Mission: Superare ATS</span>
         </div>
-        <div class="flex bg-slate-100 p-1 rounded-lg border">
-            <button onclick="setLang('it')" id="btn-it" class="px-3 py-1 text-xs font-bold rounded-md bg-blue-600 text-white">IT</button>
-            <button onclick="setLang('en')" id="btn-en" class="px-3 py-1 text-xs font-bold rounded-md text-slate-500">EN</button>
+        <div class="flex items-center gap-3">
+            <button onclick="toggleGuide(true)" class="bg-slate-100 border text-slate-700 text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 hover:bg-slate-200">
+                ❓ Guida
+            </button>
+            <div class="flex bg-slate-100 p-1 rounded-lg border">
+                <button onclick="setLang('it')" id="btn-it" class="px-3 py-1 text-xs font-bold rounded-md bg-blue-600 text-white">IT</button>
+                <button onclick="setLang('en')" id="btn-en" class="px-3 py-1 text-xs font-bold rounded-md text-slate-500">EN</button>
+            </div>
         </div>
     </header>
+
+    <!-- GUIDA MODALE -->
+    <div id="guideModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[200] hidden items-center justify-center p-4 no-print">
+        <div class="bg-white p-6 rounded-3xl max-w-md w-full shadow-2xl border border-slate-200 space-y-4">
+            <h3 class="text-lg font-black text-slate-800 flex items-center gap-2">💡 Guida alla Compilazione ATS</h3>
+            <ul class="text-xs text-slate-600 space-y-2.5 leading-relaxed">
+                <li>🎯 <b>Targetizzazione:</b> Incolla l'annuncio di lavoro in alto per permettere all'IA di rilevare ed inserire le parole chiave richieste dai filtri automatici.</li>
+                <li>✨ <b>Ottimizzazione IA:</b> Usa i pulsanti blu nelle varie sezioni per far risentire il testo in italiano formale e ad alto impatto.</li>
+                <li>📄 <b>Lunghezza A4:</b> Mantieni le descrizioni concise per garantire che il PDF rimanga pulito in un'unica pagina.</li>
+            </ul>
+            <button onclick="toggleGuide(false)" class="w-full bg-blue-600 text-white font-black py-3 rounded-xl text-xs uppercase shadow-lg">Ho Capito</button>
+        </div>
+    </div>
 
     <!-- MOBILE NAVIGATION -->
     <div class="lg:hidden flex sticky top-[73px] z-40 bg-white border-b no-print">
@@ -191,6 +209,13 @@
                 <div id="checkout-box" class="bg-white border-4 border-emerald-500 rounded-[2.5rem] p-8 shadow-2xl text-center no-print space-y-3">
                     <div class="text-4xl font-black text-slate-900 mb-2 italic">€2,99 <span class="text-sm text-slate-300 font-normal line-through">€14.99</span></div>
                     <button onclick="window.location.href='https://buy.stripe.com/fZudR83LpdsCdrG2219EI03'" id="btn-pay" class="w-full bg-emerald-500 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-emerald-600 transition-all text-sm uppercase">💳 SBLOCCA DOWNLOAD PDF</button>
+                    
+                    <!-- INPUT PROMO CODE -->
+                    <div class="pt-2 flex gap-2">
+                        <input type="text" id="promoInput" placeholder="Codice Promo (es. 1CVGRATUITO)" class="text-xs uppercase font-bold text-center border-slate-300">
+                        <button onclick="applyPromo()" class="bg-slate-800 text-white text-xs font-bold px-4 rounded-xl hover:bg-slate-900 uppercase">Riscatta</button>
+                    </div>
+
                     <button onclick="enableTestMode()" class="w-full bg-slate-200 text-slate-700 font-bold py-2 rounded-xl text-xs uppercase hover:bg-slate-300">🛠️ Attiva Stampa di Test (Senza Pagare)</button>
                     <p class="text-amber-500 text-[10px] font-black uppercase mt-2">★ ★ ★ ★ ★ (4.9/5 TrustScore)</p>
                 </div>
@@ -239,6 +264,38 @@
     <script>
         let curLang = 'it';
         const fields = ['jobOffer','fn','ln','role','email','phone','address','nat','dob','profile','exp','edu','sk1','sk2','l1','lic','coverLetter'];
+
+        function toggleGuide(show) {
+            const modal = document.getElementById('guideModal');
+            modal.style.display = show ? 'flex' : 'none';
+        }
+
+        async function applyPromo() {
+            const code = document.getElementById('promoInput').value.trim().toUpperCase();
+            if (localStorage.getItem('cv_promo_used')) {
+                alert('Hai già utilizzato il tuo codice gratuito su questo dispositivo.');
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/validate-coupon', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code })
+                });
+                const data = await res.json();
+
+                if (data.valid) {
+                    localStorage.setItem('cv_promo_used', 'true');
+                    alert(data.message);
+                    enableTestMode();
+                } else {
+                    alert(data.message);
+                }
+            } catch (err) {
+                alert('Errore durante la verifica del codice.');
+            }
+        }
 
         function setLang(l) {
             curLang = l;
