@@ -23,7 +23,6 @@ export default async function handler(req, res) {
     systemPrompt = `Sei un copywriter. ${langRule} Riscrivi questo testo in modo professionale (MAX 80 parole): ${prompt}`;
   }
 
-  // Funzione ausiliaria per inviare la richiesta a un determinato modello
   const callGemini = async (modelName) => {
     return fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${API_KEY}`, {
       method: 'POST',
@@ -33,11 +32,9 @@ export default async function handler(req, res) {
   };
 
   try {
-    // Primo tentativo con il modello desiderato
     let response = await callGemini('gemini-3.6-flash');
     let data = await response.json();
 
-    // Se si verifica l'errore di Quota Exceeded (o modello non disponibile), esegui il fallback su gemini-3.5-flash
     if (data.error && (data.error.code === 429 || data.error.message.includes('quota'))) {
       response = await callGemini('gemini-3.5-flash');
       data = await response.json();
@@ -50,6 +47,7 @@ export default async function handler(req, res) {
     if (data.candidates && data.candidates[0]?.content?.parts[0]?.text) {
       let cleanText = data.candidates[0].content.parts[0].text
         .replace(/\*\*/g, '')
+        .replace(/\$/g, '')
         .replace(/^[#-]\s*/gm, '')
         .replace(/\[Nome Cognome\]/gi, nameToUse)
         .replace(/\[Tuo Nome\]/gi, nameToUse)
