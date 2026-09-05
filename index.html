@@ -4,248 +4,231 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO & VERIFICA -->
+    <!-- SEO & VERIFICA GOOGLE -->
     <meta name="google-site-verification" content="UEmTxGqDYRCg0E4DNaG47l6u0eNcts44nKpO-TPoR4c" />
-    <title id="seo-title">CVPronto.it | Il CV Builder IA con Targetizzazione Annunci (€2.99)</title>
-    <meta name="description" content="Crea un CV professionale certificato ATS. Incolla l'annuncio e lascia che l'IA faccia il matching sartoriale. Solo 2.99€ una tantum.">
+    <title>CVPronto.it | Il CV Builder IA con Targetizzazione Annunci (€2.99)</title>
+    <meta name="description" content="Crea un CV professionale certificato ATS. Incolla l'annuncio e lascia che l'IA faccia il matching sartoriale. Solo 2.99€ una tantum, zero abbonamenti.">
     
+    <!-- GOOGLE ANALYTICS -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-N9P3CQSWGN"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-N9P3CQSWGN');</script>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
-        .preview-page { width: 100%; aspect-ratio: 1 / 1.414; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; overflow: hidden; margin-bottom: 25px; border: 1px solid #cbd5e1; }
-        .cv-grid { display: grid; grid-template-columns: 32% 68%; height: 100%; }
-        .watermark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); backdrop-filter: blur(1px); z-index: 50; pointer-events: none; }
-        .watermark-badge { transform: rotate(-25deg); border: 2px dashed #dc2626; color: #dc2626; padding: 12px; font-weight: 900; background: white; border-radius: 8px; font-size: 0.8rem; text-align: center; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f1f5f9; color: #1e293b; }
+        .input-card { background: white; border: 1px solid #e2e8f0; border-radius: 24px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
         
-        input, textarea { background: #fafafa; border: 1px solid #d1d5db; border-radius: 8px; padding: 10px; font-size: 0.85rem; width: 100%; }
-        @media (max-width: 1023px) { .tab-content { display: none; } .tab-content.active { display: block; } .preview-page { transform: scale(0.95); transform-origin: top center; } }
+        /* FOGLIO A4 ANTEPRIMA: Testo Nero e Nitido */
+        .a4-page { 
+            width: 100%; aspect-ratio: 1 / 1.414; background: white; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1); position: relative; 
+            overflow: hidden; margin-bottom: 30px; border: 1px solid #e2e8f0;
+        }
+        .preview-text { color: #0f172a !important; opacity: 1 !important; filter: none !important; }
+        .cv-grid { display: grid; grid-template-columns: 32% 68%; height: 100%; }
+        
+        /* WATERMARK SEMI-TRASPARENTE */
+        .watermark { 
+            position: absolute; inset: 0; display: flex; align-items: center; 
+            justify-content: center; background: rgba(255,255,255,0.4); 
+            backdrop-filter: blur(1px); z-index: 50; pointer-events: none; 
+        }
+        .watermark-badge { 
+            transform: rotate(-15deg); border: 3px dashed #ef4444; color: #ef4444; 
+            padding: 15px; font-weight: 900; background: white; border-radius: 12px; 
+            font-size: 0.9rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+        }
+
+        input, textarea { border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; font-size: 0.9rem; width: 100%; transition: all 0.2s; background: #fafafa; }
+        input:focus, textarea:focus { border-color: #2563eb; outline: none; ring: 4px rgba(37,99,235,0.1); background: white; }
+
+        @media (max-width: 1023px) { .tab-content { display: none; } .tab-content.active { display: block; } }
         @media print {
             .no-print { display: none !important; }
             .print-cv #letter-page { display: none !important; }
             .print-letter #cv-page { display: none !important; }
-            .preview-page { box-shadow: none !important; border: none !important; margin: 0 !important; width: 100% !important; }
+            .a4-page { box-shadow: none !important; border: none !important; margin: 0 !important; }
             @page { size: A4 portrait; margin: 0; }
         }
     </style>
 </head>
 <body class="antialiased text-slate-900">
 
-    <!-- GDPR BANNER -->
-    <div id="gdpr" class="fixed bottom-4 left-4 right-4 bg-slate-900 text-white p-4 rounded-2xl z-[100] flex flex-col md:flex-row items-center justify-between gap-4 no-print shadow-2xl border border-slate-700">
-        <p class="text-[10px] text-slate-300 uppercase font-bold tracking-widest">Dati salvati nel tuo browser. IA in tempo reale. <a href="#" class="underline">Privacy</a></p>
-        <button onclick="document.getElementById('gdpr').remove()" class="bg-blue-600 px-8 py-2 rounded-xl text-xs font-black uppercase">Accetto</button>
-    </div>
-
     <!-- HEADER -->
-    <header class="bg-white border-b sticky top-0 z-50 p-4 no-print shadow-sm flex justify-between items-center">
-        <div class="flex flex-col">
-            <span class="text-blue-600 font-black text-xl italic tracking-tighter">CVPronto.it</span>
-            <span class="text-[9px] font-bold text-slate-400 uppercase">Mission: Superare ATS</span>
-        </div>
-        <div class="flex bg-slate-100 p-1 rounded-lg border">
-            <button onclick="setLang('it')" id="btn-it" class="px-3 py-1 text-xs font-bold rounded-md bg-blue-600 text-white">IT</button>
-            <button onclick="setLang('en')" id="btn-en" class="px-3 py-1 text-xs font-bold rounded-md text-slate-500">EN</button>
+    <header class="bg-white/80 backdrop-blur-md border-b sticky top-0 z-50 p-4 no-print">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex flex-col">
+                <span class="text-blue-600 font-black text-xl tracking-tighter italic">CVPronto.it</span>
+                <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-1">Beta Study Mode</span>
+            </div>
+            <div class="flex bg-slate-100 p-1 rounded-full border border-slate-200">
+                <button onclick="setLang('it')" id="btn-it" class="px-4 py-1.5 text-[10px] font-black rounded-full transition-all bg-blue-600 text-white shadow-md">IT</button>
+                <button onclick="setLang('en')" id="btn-en" class="px-4 py-1.5 text-[10px] font-black rounded-full transition-all text-slate-500">EN</button>
+            </div>
         </div>
     </header>
 
-    <!-- MOBILE NAVIGATION -->
-    <div class="lg:hidden flex sticky top-[73px] z-40 bg-white border-b no-print">
-        <button onclick="switchTab('edit')" id="tab-edit-btn" class="flex-1 py-4 text-[10px] font-black border-b-2 border-blue-600 text-blue-600 uppercase tracking-widest">1. Compilazione</button>
-        <button onclick="switchTab('view')" id="tab-view-btn" class="flex-1 py-4 text-[10px] font-black border-b-2 border-transparent text-slate-400 uppercase tracking-widest">2. Anteprima PDF</button>
+    <!-- NAV MOBILE -->
+    <div class="lg:hidden flex sticky top-[73px] z-40 bg-white border-b no-print text-center">
+        <button onclick="switchTab('edit')" id="tab-edit-btn" class="flex-1 py-4 text-[10px] font-black border-b-4 border-blue-600 text-blue-600 uppercase">1. Compila</button>
+        <button onclick="switchTab('view')" id="tab-view-btn" class="flex-1 py-4 text-[10px] font-black border-b-4 border-transparent text-slate-400 uppercase">2. Anteprima</button>
     </div>
 
-    <main class="max-w-7xl mx-auto p-4 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <main class="max-w-7xl mx-auto p-4 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
         
         <!-- EDITOR -->
         <div id="tab-edit" class="tab-content active space-y-8 no-print">
-            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-8">
-                
-                <!-- JOB TARGET -->
-                <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-200">
-                    <label id="lbl-target" class="block text-emerald-800 font-black text-[10px] mb-2 uppercase">🎯 Targetizzazione Annuncio (Consigliato)</label>
-                    <textarea id="jobOffer" rows="3" placeholder="Incolla l'annuncio per il matching ATS..." oninput="sync()"></textarea>
-                </div>
+            
+            <div class="bg-emerald-600 p-6 rounded-[2rem] text-white shadow-xl">
+                <label id="lbl-target" class="block font-black text-[10px] mb-3 uppercase tracking-widest opacity-80 italic">🎯 Incolla l'Annuncio Target (Matching IA)</label>
+                <textarea id="jobOffer" class="w-full p-4 text-sm rounded-2xl bg-white/10 border border-white/20 text-white placeholder:text-white/40 outline-none" rows="3" placeholder="L'IA userà questo testo per ottimizzare il CV..."></textarea>
+            </div>
 
-                <!-- 1. PERSONAL -->
-                <div class="space-y-4">
-                    <h2 class="font-black text-xl text-slate-800 border-b pb-2 flex items-center justify-between"><span id="txt-personal">1. Info Personali</span></h2>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="col-span-2 p-3 bg-slate-50 rounded-xl border-dashed border-2 flex items-center gap-3">
-                            <input type="file" id="photo" class="text-[10px]" onchange="readImg(this)">
-                        </div>
-                        <input type="text" id="fn" placeholder="Nome *" oninput="sync()">
-                        <input type="text" id="ln" placeholder="Cognome *" oninput="sync()">
-                        <input type="text" id="role" placeholder="Ruolo / Titolo *" class="col-span-2 border-blue-100 font-bold text-blue-600" oninput="sync()">
-                        <input type="email" id="email" placeholder="Email *" oninput="sync()">
-                        <input type="tel" id="phone" placeholder="Telefono *" oninput="sync()">
-                        <input type="text" id="address" placeholder="Città, Italia" class="col-span-2" oninput="sync()">
-                        <input type="text" id="nat" placeholder="Nazionalità" oninput="sync()">
-                        <input type="text" id="dob" placeholder="Data di Nascita" oninput="sync()">
+            <div class="input-card space-y-6">
+                <h2 class="font-black text-xl text-slate-800 border-b pb-2"><span class="text-blue-600">01.</span> <span id="txt-personal">Dati Personali</span></h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-2 p-3 bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl flex items-center justify-between">
+                        <input type="file" id="photo" class="text-[10px]" onchange="readImg(this)">
+                        <span class="text-[9px] font-black text-slate-400 uppercase">Foto Profilo</span>
                     </div>
+                    <input type="text" id="fn" placeholder="Nome" oninput="sync()">
+                    <input type="text" id="ln" placeholder="Cognome" oninput="sync()">
+                    <input type="text" id="role" placeholder="Ruolo Desiderato" class="col-span-2 font-bold text-blue-600" oninput="sync()">
+                    <input type="email" id="email" placeholder="Email" oninput="sync()">
+                    <input type="tel" id="phone" placeholder="Telefono" oninput="sync()">
+                    <input type="text" id="address" placeholder="Città, Italia" class="col-span-2" oninput="sync()">
+                    <input type="text" id="nat" placeholder="Nazionalità" oninput="sync()">
+                    <input type="text" id="dob" placeholder="Data di Nascita" oninput="sync()">
                 </div>
+            </div>
 
-                <!-- 2. AI SECTIONS -->
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h2 class="font-black text-xl" id="txt-profile">2. Profilo & Esperienza</h2>
-                        <button onclick="ai('profile', event)" class="bg-blue-600 text-white text-[9px] font-black px-4 py-2 rounded-full shadow-lg">✨ OTTIMIZZA IA</button>
-                    </div>
-                    <textarea id="profile" rows="3" placeholder="Il tuo profilo..." oninput="sync()"></textarea>
-                    <textarea id="exp" rows="5" placeholder="Le tue esperienze (Azienda, Date, Mansioni)..." oninput="sync()"></textarea>
-                </div>
+            <div class="input-card space-y-4">
+                <div class="flex justify-between items-center"><h2 class="font-black text-xl text-slate-800">02. Profilo</h2><button onclick="ai('profile', event)" class="bg-blue-600 text-white text-[9px] font-black px-4 py-2 rounded-full shadow-lg">✨ OTTIMIZZA</button></div>
+                <textarea id="profile" rows="3" placeholder="Descrivi brevemente chi sei..." oninput="sync()"></textarea>
+            </div>
 
-                <!-- 3. EDU & SKILLS -->
-                <div class="space-y-4">
-                    <h2 class="font-black text-xl" id="txt-skills">3. Formazione & Skills</h2>
-                    <textarea id="edu" rows="3" placeholder="Scuole, Università, Corsi..." oninput="sync()"></textarea>
-                    <div class="grid grid-cols-2 gap-4">
-                        <input type="text" id="sk1" placeholder="Soft Skills" oninput="sync()">
-                        <input type="text" id="sk2" placeholder="Hard Skills" oninput="sync()">
-                        <input type="text" id="l1" placeholder="Lingue" oninput="sync()">
-                        <input type="text" id="lic" placeholder="Patenti" oninput="sync()">
-                    </div>
-                </div>
+            <div class="input-card space-y-4">
+                <div class="flex justify-between items-center"><h2 class="font-black text-xl text-slate-800">03. Esperienza</h2><button onclick="ai('exp', event)" class="bg-blue-600 text-white text-[9px] font-black px-4 py-2 rounded-full shadow-lg">✨ OTTIMIZZA ATS</button></div>
+                <textarea id="exp" rows="6" placeholder="Ruoli, Aziende, Mansioni svolte..." oninput="sync()"></textarea>
+            </div>
 
-                <!-- 4. LETTERA IA -->
-                <div class="bg-indigo-50 p-6 rounded-3xl border border-indigo-100 space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h2 class="font-black text-lg text-indigo-900 uppercase">✉️ Lettera di Presentazione IA</h2>
-                        <button onclick="ai('letter', event)" class="bg-indigo-600 text-white text-[9px] font-black px-4 py-2 rounded-full shadow-lg">✨ GENERA ORA</button>
-                    </div>
-                    <textarea id="coverLetter" rows="5" placeholder="L'IA scriverà qui basandosi sull'annuncio..." oninput="sync()"></textarea>
+            <div class="input-card space-y-6">
+                <h2 class="font-black text-xl text-slate-800 border-b pb-2">04. Istruzione & Skills</h2>
+                <textarea id="edu" rows="3" placeholder="Scuole, Università, Corsi..." oninput="sync()"></textarea>
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" id="l1" placeholder="Madrelingua" oninput="sync()">
+                    <input type="text" id="l2" placeholder="Altre lingue" oninput="sync()">
+                    <input type="text" id="sk1" placeholder="Soft Skills" class="col-span-2" oninput="sync()">
+                    <input type="text" id="sk2" placeholder="Hard Skills" class="col-span-2" oninput="sync()">
                 </div>
+            </div>
+
+            <div class="bg-indigo-50 p-6 rounded-[2rem] border border-indigo-100 space-y-4 shadow-inner">
+                <div class="flex justify-between items-center">
+                    <h2 class="font-black text-lg text-indigo-900 uppercase italic">✉️ Lettera di Presentazione IA</h2>
+                    <button onclick="ai('letter', event)" class="bg-indigo-600 text-white text-[9px] font-black px-4 py-2 rounded-full shadow-lg">✨ GENERA ORA</button>
+                </div>
+                <textarea id="coverLetter" class="bg-white/70" rows="5" placeholder="La lettera apparirà qui..." oninput="sync()"></textarea>
             </div>
         </div>
 
-        <!-- PREVIEW -->
-        <div id="tab-view" class="tab-content lg:block">
+        <!-- ANTEPRIMA -->
+        <div id="tab-view" class="tab-content lg:block space-y-8">
             <div class="sticky top-24 space-y-8">
                 
-                <!-- CV SHEET -->
-                <div id="cv-page" class="preview-page flex">
-                    <div class="watermark no-print" id="wm-cv"><div class="watermark-badge">ANTEPRIMA CVPRONTO.IT<br>SBLOCCA PER PDF PULITO</div></div>
+                <div id="cv-page" class="a4-page flex text-slate-800">
+                    <div class="watermark no-print" id="wm-cv"><div class="watermark-badge">ANTEPRIMA PDF PULITO<br>SOLO €2.99</div></div>
                     <div class="w-1/3 bg-slate-800 text-white p-6 text-[9px] space-y-6">
-                        <img id="outPhoto" class="w-20 h-20 rounded-full border-2 border-blue-500 mx-auto hidden object-cover shadow-lg">
-                        <div id="initials" class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto shadow-xl">CV</div>
-                        <div class="space-y-3">
-                            <p class="font-black border-b border-slate-600 text-blue-400 uppercase py-1 tracking-tighter">Contatti</p>
-                            <p id="outEmail"></p><p id="outPhone"></p><p id="outAddress"></p>
-                        </div>
-                        <div class="space-y-3">
-                            <p class="font-black border-b border-slate-600 text-blue-400 uppercase py-1 tracking-tighter">Dati</p>
-                            <p id="outNat"></p><p id="outDob"></p>
+                        <img id="outPhoto" class="w-16 h-16 rounded-full border-2 border-blue-500 mx-auto hidden object-cover shadow-lg">
+                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto shadow-xl" id="initials">CV</div>
+                        <div class="space-y-4 text-white">
+                            <p class="font-black border-b border-slate-600 text-blue-400 uppercase py-1 tracking-widest">Contatti</p>
+                            <p id="outEmail" class="preview-text text-white font-bold"></p>
+                            <p id="outPhone" class="preview-text text-white font-bold"></p>
+                            <p id="outAddress" class="preview-text text-white font-bold"></p>
+                            <p class="font-black border-b border-slate-600 text-blue-400 uppercase py-1 tracking-widest">Dettagli</p>
+                            <p id="outNat" class="preview-text text-white font-bold"></p>
+                            <p id="outDob" class="preview-text text-white font-bold"></p>
+                            <p id="outL1" class="preview-text text-white font-bold"></p>
                         </div>
                     </div>
                     <div class="w-2/3 p-10">
-                        <h1 id="outName" class="text-2xl font-black text-slate-900 uppercase leading-none">Nome Cognome</h1>
+                        <h1 id="outName" class="text-2xl font-black uppercase leading-none mb-1 text-slate-900">Nome Cognome</h1>
                         <p id="outRole" class="text-[10px] font-black text-blue-600 uppercase mb-8 tracking-widest"></p>
-                        <div class="space-y-6 text-[9px] leading-relaxed text-slate-700">
-                            <section><p class="font-black border-b-2 border-slate-50 mb-1 uppercase text-slate-400">Profilo</p><p id="outProfile"></p></section>
-                            <section><p class="font-black border-b-2 border-slate-50 mb-1 uppercase text-slate-400">Esperienza</p><p id="outExp" class="whitespace-pre-wrap"></p></section>
-                            <section><p class="font-black border-b-2 border-slate-50 mb-1 uppercase text-slate-400">Istruzione</p><p id="outEdu" class="whitespace-pre-wrap"></p></section>
+                        <div class="space-y-5 text-[9px] leading-relaxed">
+                            <section><p class="font-black border-b-2 border-slate-100 mb-1 uppercase text-slate-400">Profilo Professionale</p><p id="outProfile" class="preview-text text-slate-700"></p></section>
+                            <section><p class="font-black border-b-2 border-slate-100 mb-1 uppercase text-slate-400">Esperienza Lavorativa</p><p id="outExp" class="preview-text text-slate-700 whitespace-pre-wrap"></p></section>
+                            <section><p class="font-black border-b-2 border-slate-100 mb-1 uppercase text-slate-400">Formazione</p><p id="outEdu" class="preview-text text-slate-700"></p></section>
                         </div>
-                        <p class="mt-8 pt-4 border-t border-slate-50 text-[6px] text-slate-400 uppercase">Autorizzo il trattamento dei dati (GDPR 679/16).</p>
+                        <p class="mt-8 pt-4 border-t border-slate-50 text-[6px] text-slate-300 italic uppercase tracking-tighter">Autorizzo il trattamento dei dati (GDPR 679/16).</p>
                     </div>
                 </div>
 
-                <!-- LETTER SHEET -->
-                <div id="letter-page" class="preview-page p-14">
-                    <div class="watermark no-print" id="wm-letter"><div class="watermark-badge">ANTEPRIMA LETTERA IA<br>FILE PDF SEPARATO</div></div>
+                <div id="letter-page" class="a4-page p-14 text-slate-800">
+                    <div class="watermark no-print" id="wm-letter"><div class="watermark-badge">ANTEPRIMA LETTERA IA<br>FILE SEPARATO</div></div>
                     <div class="border-b-4 border-slate-900 pb-4 mb-8">
-                        <h2 id="outNameL" class="text-2xl font-black uppercase"></h2>
-                        <p id="outRoleL" class="text-xs text-blue-600 font-black uppercase"></p>
+                        <h2 id="outNameL" class="text-2xl font-black uppercase text-slate-900"></h2>
+                        <p id="outRoleL" class="text-xs text-blue-600 font-black uppercase tracking-widest"></p>
                     </div>
-                    <p class="text-[10px] font-black mb-6 uppercase tracking-widest text-slate-400">Oggetto: Candidatura Professionale</p>
-                    <p id="outLetter" class="text-[11px] text-slate-700 leading-loose whitespace-pre-wrap">La tua lettera apparirà qui...</p>
+                    <p id="outLetter" class="text-[11px] preview-text text-slate-700 whitespace-pre-wrap">La lettera apparirà qui...</p>
                 </div>
 
-                <!-- CHECKOUT -->
-                <div id="checkout-box" class="bg-white border-4 border-emerald-500 rounded-[2.5rem] p-8 shadow-2xl text-center no-print">
-                    <div class="text-4xl font-black text-slate-900 mb-2 italic">€2,99 <span class="text-sm text-slate-300 font-normal line-through">€14.99</span></div>
-                    <button onclick="window.location.href='https://buy.stripe.com/fZudR83LpdsCdrG2219EI03'" class="w-full bg-emerald-500 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-emerald-600 transition-all text-sm uppercase">💳 SBLOCCA DOWNLOAD PDF</button>
-                    <p class="text-amber-500 text-[10px] font-black uppercase mt-4">★ ★ ★ ★ ★ (4.9/5 TrustScore)</p>
+                <div class="bg-white border-4 border-emerald-500 rounded-[2.5rem] p-8 shadow-2xl text-center no-print">
+                    <div class="text-4xl font-black text-slate-900 mb-4">€2,99</div>
+                    <button onclick="window.location.href='https://buy.stripe.com/fZudR83LpdsCdrG2219EI03'" class="w-full bg-emerald-500 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-emerald-600 transition-all text-sm uppercase">💳 VAI AL PAGAMENTO</button>
+                    <button onclick="window.location.href='?paid=true'" class="mt-4 text-[9px] font-black text-blue-600 underline uppercase tracking-widest block mx-auto">Sblocca Versione Studio (Gratis)</button>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- BLOG SEO -->
+    <!-- BLOG SEO MODERNO -->
     <section class="max-w-7xl mx-auto px-6 py-24 no-print border-t border-slate-200 mt-20">
         <h2 class="text-3xl font-black text-center mb-16 uppercase tracking-tighter italic">Guide Strategiche CVPronto.it</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="grid md:grid-cols-3 gap-10">
             <article class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all group">
-                <div class="text-3xl mb-8 group-hover:scale-110 transition-transform">🤖</div>
-                <h3 class="font-black text-xl mb-4 text-blue-600">Superare i filtri ATS nel 2026</h3>
-                <p class="text-sm text-slate-500">L'80% delle aziende usa software ATS. CVPronto analizza l'annuncio e inserisce le keyword esatte per darti il massimo punteggio.</p>
+                <div class="text-4xl mb-6 group-hover:scale-110 transition-transform">🤖</div>
+                <h3 class="font-black text-xl mb-4 text-blue-600 leading-tight">Superare i filtri ATS nel 2026</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">I software ATS scansionano parole chiave specifiche. CVPronto analizza l'annuncio e inserisce le keyword esatte richiesti dai recruiter.</p>
             </article>
             <article class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all group">
-                <div class="text-3xl mb-8 group-hover:scale-110 transition-transform">✉️</div>
-                <h3 class="font-black text-xl mb-4 text-indigo-600">Lettera IA: il tuo asso nella manica</h3>
-                <p class="text-sm text-slate-500">Le lettere generiche falliscono. La nostra IA scrive testi motivazionali sartoriali che convincono il recruiter al primo sguardo.</p>
+                <div class="text-4xl mb-6 group-hover:scale-110 transition-transform">✉️</div>
+                <h3 class="font-black text-xl mb-4 text-indigo-600 leading-tight">Lettera IA: il tuo asso nella manica</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">Le lettere generiche sono cestinate. La nostra IA scrive testi motivazionali sartoriali che convincono il recruiter.</p>
             </article>
             <article class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all group">
-                <div class="text-3xl mb-8 group-hover:scale-110 transition-transform">🌍</div>
-                <h3 class="font-black text-xl mb-4 text-emerald-600">CV in Inglese Professionale</h3>
-                <p class="text-sm text-slate-500">Adattiamo il tuo profilo agli standard USA/UK, usando la terminologia tecnica corretta per il mercato internazionale.</p>
+                <div class="text-4xl mb-6 group-hover:scale-110 transition-transform">🛡️</div>
+                <h3 class="font-black text-xl mb-4 text-emerald-600 leading-tight">I tuoi dati sono al sicuro</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">A differenza di altri, non salviamo dati su database. Tutto risiede nel tuo browser (LocalStorage) per la massima privacy.</p>
             </article>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-slate-900 text-white py-12 px-6 no-print text-center">
-        <div class="text-2xl font-black mb-6 italic text-blue-500">CVPronto.it</div>
-        <div class="flex justify-center gap-10 text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-10">
-            <a href="https://x.com/stdlabgen" target="_blank" class="hover:text-white">X @stdlabgen</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Termini</a>
-        </div>
-        <p class="text-[8px] text-slate-600 uppercase font-black tracking-widest">© 2026 CVPronto.it | Un progetto di StdLab per superare gli ATS.</p>
+    <footer class="bg-slate-900 text-white py-10 px-6 no-print text-center">
+        <div class="text-2xl font-black mb-6 italic text-blue-500 uppercase tracking-tighter leading-none">CVPronto.it</div>
+        <p class="text-[8px] text-slate-600 uppercase font-black tracking-widest italic opacity-50">© 2026 CVPronto.it | Un progetto di StdLab per una carriera perfetta.</p>
     </footer>
 
     <script>
         let curLang = 'it';
-        const fields = ['jobOffer','fn','ln','role','email','phone','address','nat','dob','profile','exp','edu','sk1','sk2','l1','lic','coverLetter'];
+        const fields = ['jobOffer','fn','ln','role','email','phone','address','nat','dob','profile','exp','edu','sk1','sk2','l1','coverLetter'];
 
         function setLang(l) {
             curLang = l;
-            document.getElementById('btn-it').className = l === 'it' ? 'px-3 py-1 text-xs font-bold rounded bg-blue-600 text-white' : 'px-3 py-1 text-xs font-bold rounded bg-slate-100';
-            document.getElementById('btn-en').className = l === 'en' ? 'px-3 py-1 text-xs font-bold rounded bg-blue-600 text-white' : 'px-3 py-1 text-xs font-bold rounded bg-slate-100';
-            const t = {
-                it: { target: "🎯 Targetizzazione Annuncio", personal: "1. Info Personali", profile: "2. Profilo & Esperienza", skills: "3. Formazione & Skills" },
-                en: { target: "🎯 Job Targeting", personal: "1. Personal Info", profile: "2. Profile & Experience", skills: "3. Education & Skills" }
-            };
-            document.getElementById('lbl-target').innerText = t[l].target;
-            document.getElementById('txt-personal').innerText = t[l].personal;
-            document.getElementById('txt-profile').innerText = t[l].profile;
-            document.getElementById('txt-skills').innerText = t[l].skills;
+            document.getElementById('btn-it').className = l === 'it' ? 'px-4 py-1.5 text-[10px] font-black rounded-full transition-all bg-blue-600 text-white shadow-md' : 'px-4 py-1.5 text-[10px] font-black rounded-full transition-all text-slate-500';
+            document.getElementById('btn-en').className = l === 'en' ? 'px-4 py-1.5 text-[10px] font-black rounded-full transition-all bg-blue-600 text-white shadow-md' : 'px-4 py-1.5 text-[10px] font-black rounded-full transition-all text-slate-500';
+            const t = { it: { comp: "1. Compila", prev: "2. Anteprima" }, en: { comp: "1. Edit", prev: "2. Preview" } };
+            document.getElementById('tab-edit-btn').innerText = t[l].comp;
+            document.getElementById('tab-view-btn').innerText = t[l].prev;
         }
 
         function switchTab(t) {
             document.getElementById('tab-edit').classList.toggle('active', t === 'edit');
             document.getElementById('tab-view').classList.toggle('active', t === 'view');
-            document.getElementById('tab-edit-btn').className = t === 'edit' ? 'flex-1 py-4 text-[10px] font-black border-b-2 border-blue-600 text-blue-600 uppercase tracking-widest' : 'flex-1 py-4 text-[10px] font-black border-b-2 border-transparent text-slate-400 uppercase tracking-widest';
-            document.getElementById('tab-view-btn').className = t === 'view' ? 'flex-1 py-4 text-[10px] font-black border-b-2 border-blue-600 text-blue-600 uppercase tracking-widest' : 'flex-1 py-4 text-[10px] font-black border-b-2 border-transparent text-slate-400 uppercase tracking-widest';
-        }
-
-        function sync() {
-            fields.forEach(f => {
-                const el = document.getElementById(f);
-                if(el) {
-                    localStorage.setItem('cv_' + f, el.value);
-                    const out = document.getElementById('out' + f.charAt(0).toUpperCase() + f.slice(1));
-                    if(out) out.innerText = el.value;
-                }
-            });
-            const name = (document.getElementById('fn').value + ' ' + document.getElementById('ln').value).trim() || 'Nome Cognome';
-            document.getElementById('outName').innerText = name;
-            document.getElementById('outNameL').innerText = name;
-            document.getElementById('outRole').innerText = document.getElementById('role').value || 'Titolo Professionale';
-            document.getElementById('outRoleL').innerText = document.getElementById('role').value || 'Titolo Professionale';
-            document.getElementById('initials').innerText = ((document.getElementById('fn').value[0] || '') + (document.getElementById('ln').value[0] || '')).toUpperCase() || 'CV';
+            document.getElementById('tab-edit-btn').className = t === 'edit' ? 'flex-1 py-4 text-[10px] font-black border-b-4 border-blue-600 text-blue-600 uppercase' : 'flex-1 py-4 text-[10px] font-black border-b-4 border-transparent text-slate-400 uppercase';
+            document.getElementById('tab-view-btn').className = t === 'view' ? 'flex-1 py-4 text-[10px] font-black border-b-4 border-blue-600 text-blue-600 uppercase' : 'flex-1 py-4 text-[10px] font-black border-b-4 border-transparent text-slate-400 uppercase';
         }
 
         function readImg(input) {
@@ -261,19 +244,33 @@
             }
         }
 
+        function sync() {
+            fields.forEach(f => {
+                const el = document.getElementById(f);
+                if(el) {
+                    localStorage.setItem('cv_' + f, el.value);
+                    const out = document.getElementById('out' + f.charAt(0).toUpperCase() + f.slice(1));
+                    if(out) out.innerText = el.value;
+                }
+            });
+            const name = (document.getElementById('fn').value + ' ' + document.getElementById('ln').value).trim() || 'Nome Cognome';
+            document.getElementById('outName').innerText = name; document.getElementById('outNameL').innerText = name;
+            document.getElementById('outRole').innerText = document.getElementById('role').value || 'Titolo Professionale';
+            document.getElementById('outRoleL').innerText = document.getElementById('role').value || 'Titolo Professionale';
+            document.getElementById('initials').innerText = ((document.getElementById('fn').value[0] || '') + (document.getElementById('ln').value[0] || '')).toUpperCase() || 'CV';
+        }
+
         async function ai(type, event) {
-            const btn = event.target;
-            const old = btn.innerText;
-            btn.disabled = true; btn.innerText = "⏳";
-            const field = type === 'letter' ? 'coverLetter' : type;
+            const btn = event.target; const old = btn.innerText; btn.disabled = true; btn.innerText = "⏳";
+            const fieldId = type === 'letter' ? 'coverLetter' : type;
             try {
                 const res = await fetch('/api/generate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ section: type, prompt: document.getElementById(field).value || 'Genera professionale', role: document.getElementById('role').value, jobOffer: document.getElementById('jobOffer').value, language: curLang })
+                    body: JSON.stringify({ section: type, prompt: document.getElementById(fieldId).value, role: document.getElementById('role').value, jobOffer: document.getElementById('jobOffer').value, language: curLang })
                 });
                 const text = await res.text();
-                document.getElementById(field).value = text;
+                document.getElementById(fieldId).value = text;
                 sync();
             } catch(e) { alert("Errore IA: Riprova"); }
             finally { btn.disabled = false; btn.innerText = old; }
@@ -290,7 +287,7 @@
             if(new URLSearchParams(window.location.search).get('paid') === 'true') {
                 document.getElementById('wm-cv').style.display = 'none';
                 document.getElementById('wm-letter').style.display = 'none';
-                document.getElementById('checkout-box').innerHTML = `<div class="flex gap-2"><button onclick="document.body.classList.add('print-cv'); window.print(); document.body.classList.remove('print-cv');" class="flex-1 bg-blue-600 text-white font-black py-4 rounded-xl text-[10px]">📥 PDF CV</button><button onclick="document.body.classList.add('print-letter'); window.print(); document.body.classList.remove('print-letter');" class="flex-1 bg-indigo-600 text-white font-black py-4 rounded-xl text-[10px]">📥 PDF LETTERA</button></div>`;
+                document.getElementById('checkout-box').innerHTML = `<div class="flex gap-2 p-2 bg-emerald-50 rounded-2xl border-2 border-emerald-100"><button onclick="document.body.classList.add('print-cv'); window.print(); document.body.classList.remove('print-cv');" class="flex-1 bg-blue-600 text-white font-black py-4 rounded-xl text-[10px]">📥 PDF CV</button><button onclick="document.body.classList.add('print-letter'); window.print(); document.body.classList.remove('print-letter');" class="flex-1 bg-indigo-600 text-white font-black py-4 rounded-xl text-[10px]">📥 PDF LETTERA</button></div>`;
             }
         };
     </script>
