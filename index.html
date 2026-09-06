@@ -9,9 +9,9 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
 
     <!-- SEO CANONICAL TAG -->
-    <link rel="canonical" href="https://cvpronto.it/" />
+    <link rel="canonical" href="https://cvpronto.it/">
 
-    <meta name="google-site-verification" content="UEmTxGqDYRCg0E4DNaG47l6u0eNcts44nKpO-TPoR4c" />
+    <meta name="google-site-verification" content="UEmTxGqDYRCg0E4DNaG47l6u0eNcts44nKpO-TPoR4c">
     <title id="seo-title">CVPronto.it | Il CV Builder IA con Targetizzazione Annunci (€2.99)</title>
     <meta name="description" content="Crea un CV professionale certificato ATS. Incolla l'annuncio e lascia che l'IA faccia il matching sartoriale. Solo 2.99€ una tantum.">
 
@@ -44,10 +44,14 @@
     }
     </script>
     
+    <!-- OPTIMIZED ASSETS LOADING -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-N9P3CQSWGN"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-N9P3CQSWGN');</script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
@@ -85,13 +89,13 @@
 <body class="antialiased text-slate-900">
 
     <!-- GDPR BANNER -->
-    <div id="gdpr" class="fixed bottom-4 left-4 right-4 bg-slate-900 text-white p-4 rounded-2xl z-[100] flex flex-col md:flex-row items-center justify-between gap-4 no-print shadow-2xl border border-slate-700">
-        <p id="txt-gdpr-banner" class="text-[10px] text-slate-300 uppercase font-bold tracking-widest">Dati salvati in locale nel tuo browser. IA in tempo reale. <button type="button" onclick="togglePrivacyModal(true)" class="underline text-blue-400">Privacy Policy</button></p>
+    <div id="gdpr" class="fixed bottom-4 left-4 right-4 bg-slate-900 text-white p-4 rounded-2xl z-50 flex flex-col md:flex-row items-center justify-between gap-4 no-print shadow-2xl border border-slate-700">
+        <p id="txt-gdpr-banner" class="text-xs text-slate-300 font-bold uppercase tracking-wider">Dati salvati in locale nel tuo browser. IA in tempo reale. <button type="button" onclick="togglePrivacyModal(true)" class="underline text-blue-400">Privacy Policy</button></p>
         <button type="button" onclick="document.getElementById('gdpr').remove()" id="btn-gdpr-accept" class="bg-blue-600 px-8 py-2 rounded-xl text-xs font-black uppercase">Accetto</button>
     </div>
 
     <!-- PRIVACY MODAL -->
-    <div id="privacyModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[200] hidden items-center justify-center p-4 no-print">
+    <div id="privacyModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4 no-print">
         <div class="bg-white p-6 rounded-3xl max-w-lg w-full max-h-[80vh] overflow-y-auto shadow-2xl border border-slate-200 space-y-4 text-xs text-slate-600">
             <h3 class="text-base font-black text-slate-800 uppercase border-b pb-2">🛡️ Informativa sulla Privacy - CVPronto.it</h3>
             <p><b>1. Trasparenza e Zero Abbonamenti:</b> CVPronto.it non richiede registrazioni, né memorizza carte di credito. L'acquisto di 2,99€ è una-tantum per il singolo download e non comporta alcun addebito ricorsivo o abbonamento nascosto.</p>
@@ -102,10 +106,10 @@
     </div>
 
     <!-- HEADER -->
-    <header class="bg-white border-b sticky top-0 z-50 p-4 no-print shadow-sm flex justify-between items-center">
+    <header class="bg-white border-b sticky top-0 z-40 p-4 no-print shadow-sm flex justify-between items-center">
         <div class="flex flex-col">
             <span class="text-blue-600 font-black text-xl italic tracking-tighter">CVPronto.it</span>
-            <span class="text-[9px] font-bold text-slate-400 uppercase">Mission: Superare ATS</span>
+            <span class="text-xs font-bold text-slate-400 uppercase">Mission: Superare ATS</span>
         </div>
         <div class="flex items-center gap-3">
             <button type="button" onclick="toggleGuide(true)" class="bg-slate-100 border text-slate-700 text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 hover:bg-slate-200">
@@ -119,7 +123,7 @@
     </header>
 
     <!-- GUIDA MODALE -->
-    <div id="guideModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[200] hidden items-center justify-center p-4 no-print">
+    <div id="guideModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4 no-print">
         <div class="bg-white p-6 rounded-3xl max-w-md w-full shadow-2xl border border-slate-200 space-y-4">
             <h3 class="text-lg font-black text-slate-800 flex items-center gap-2">💡 Guida alla Compilazione ATS</h3>
             <ul class="text-xs text-slate-600 space-y-2.5 leading-relaxed">
@@ -132,9 +136,9 @@
     </div>
 
     <!-- MOBILE NAVIGATION -->
-    <div class="lg:hidden flex sticky top-[73px] z-40 bg-white border-b no-print">
-        <button type="button" onclick="switchTab('edit')" id="tab-edit-btn" class="flex-1 py-4 text-[10px] font-black border-b-2 border-blue-600 text-blue-600 uppercase tracking-widest">1. Compilazione</button>
-        <button type="button" onclick="switchTab('view')" id="tab-view-btn" class="flex-1 py-4 text-[10px] font-black border-b-2 border-transparent text-slate-400 uppercase tracking-widest">2. Anteprima PDF</button>
+    <div class="lg:hidden flex sticky top-[73px] z-30 bg-white border-b no-print">
+        <button type="button" onclick="switchTab('edit')" id="tab-edit-btn" class="flex-1 py-4 text-xs font-black border-b-2 border-blue-600 text-blue-600 uppercase tracking-widest">1. Compilazione</button>
+        <button type="button" onclick="switchTab('view')" id="tab-view-btn" class="flex-1 py-4 text-xs font-black border-b-2 border-transparent text-slate-400 uppercase tracking-widest">2. Anteprima PDF</button>
     </div>
 
     <main class="max-w-7xl mx-auto p-4 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -145,7 +149,7 @@
                 
                 <!-- JOB TARGET -->
                 <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-200">
-                    <label id="lbl-target" for="jobOffer" class="block text-emerald-800 font-black text-[10px] mb-2 uppercase">🎯 Targetizzazione Annuncio (Consigliato)</label>
+                    <label id="lbl-target" for="jobOffer" class="block text-emerald-800 font-black text-xs mb-2 uppercase">🎯 Targetizzazione Annuncio (Consigliato)</label>
                     <textarea id="jobOffer" rows="6" class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500" style="resize: auto; overflow-y: scroll; -webkit-overflow-scrolling: touch; min-height: 120px;" placeholder="Incolla l'annuncio per il matching ATS..." oninput="sync()"></textarea>
                 </div>
 
@@ -154,25 +158,49 @@
                     <h2 class="font-black text-xl text-slate-800 border-b pb-2 flex items-center justify-between"><span id="txt-personal">1. Info Personali</span></h2>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="col-span-2 p-3 bg-slate-50 rounded-xl border-dashed border-2 flex flex-col gap-1">
-                            <label for="photo" class="text-[10px] font-bold text-slate-500 uppercase">Foto Profilo (Opzionale)</label>
-                            <input type="file" id="photo" class="text-[10px]" onchange="readImg(this)">
+                            <label for="photo" class="text-xs font-bold text-slate-500 uppercase">Foto Profilo (Opzionale)</label>
+                            <input type="file" id="photo" class="text-xs" onchange="readImg(this)">
                         </div>
-                        <input type="text" id="fn" placeholder="Nome *" oninput="sync()">
-                        <input type="text" id="ln" placeholder="Cognome *" oninput="sync()">
-                        <input type="text" id="role" placeholder="Ruolo / Titolo *" class="col-span-2 border-blue-100 font-bold text-blue-600" oninput="sync()">
-                        <input type="email" id="email" placeholder="Email *" oninput="sync()">
-                        <input type="tel" id="phone" placeholder="Telefono *" oninput="sync()">
-                        <input type="text" id="address" placeholder="Città, Italia" class="col-span-2" oninput="sync()">
-                        <input type="text" id="nat" placeholder="Nazionalità" oninput="sync()">
-                        <input type="text" id="dob" placeholder="Data di Nascita" oninput="sync()">
+                        <div>
+                            <label for="fn" class="sr-only">Nome</label>
+                            <input type="text" id="fn" placeholder="Nome *" oninput="sync()">
+                        </div>
+                        <div>
+                            <label for="ln" class="sr-only">Cognome</label>
+                            <input type="text" id="ln" placeholder="Cognome *" oninput="sync()">
+                        </div>
+                        <div class="col-span-2">
+                            <label for="role" class="sr-only">Ruolo / Titolo</label>
+                            <input type="text" id="role" placeholder="Ruolo / Titolo *" class="border-blue-100 font-bold text-blue-600" oninput="sync()">
+                        </div>
+                        <div>
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="email" id="email" placeholder="Email *" oninput="sync()">
+                        </div>
+                        <div>
+                            <label for="phone" class="sr-only">Telefono</label>
+                            <input type="tel" id="phone" placeholder="Telefono *" oninput="sync()">
+                        </div>
+                        <div class="col-span-2">
+                            <label for="address" class="sr-only">Città</label>
+                            <input type="text" id="address" placeholder="Città, Italia" oninput="sync()">
+                        </div>
+                        <div>
+                            <label for="nat" class="sr-only">Nazionalità</label>
+                            <input type="text" id="nat" placeholder="Nazionalità" oninput="sync()">
+                        </div>
+                        <div>
+                            <label for="dob" class="sr-only">Data di Nascita</label>
+                            <input type="text" id="dob" placeholder="Data di Nascita" oninput="sync()">
+                        </div>
                     </div>
                 </div>
 
                 <!-- 2. PROFILO -->
                 <div class="space-y-4">
                     <div class="flex justify-between items-center">
-                        <h2 class="font-black text-xl" id="txt-profile">2. Profilo Professionale</h2>
-                        <button type="button" onclick="ai('profile', event)" id="btn-ai-profile" class="bg-blue-600 text-white text-[9px] font-black px-4 py-2 rounded-full shadow-lg">✨ OTTIMIZZA IA</button>
+                        <label for="profile" class="font-black text-xl text-slate-800" id="txt-profile">2. Profilo Professionale</label>
+                        <button type="button" onclick="ai('profile', event)" id="btn-ai-profile" class="bg-blue-600 text-white text-xs font-black px-4 py-2 rounded-full shadow-lg">✨ OTTIMIZZA IA</button>
                     </div>
                     <textarea id="profile" rows="3" placeholder="Il tuo profilo..." oninput="sync()"></textarea>
                 </div>
@@ -180,8 +208,8 @@
                 <!-- 3. ESPERIENZA -->
                 <div class="space-y-4">
                     <div class="flex justify-between items-center">
-                        <h2 class="font-black text-xl" id="txt-exp">3. Esperienza Lavorativa</h2>
-                        <button type="button" onclick="ai('exp', event)" id="btn-ai-exp" class="bg-blue-600 text-white text-[9px] font-black px-4 py-2 rounded-full shadow-lg">✨ OTTIMIZZA IA</button>
+                        <label for="exp" class="font-black text-xl text-slate-800" id="txt-exp">3. Esperienza Lavorativa</label>
+                        <button type="button" onclick="ai('exp', event)" id="btn-ai-exp" class="bg-blue-600 text-white text-xs font-black px-4 py-2 rounded-full shadow-lg">✨ OTTIMIZZA IA</button>
                     </div>
                     <textarea id="exp" rows="5" placeholder="Le tue esperienze (Azienda, Date, Mansioni)..." oninput="sync()"></textarea>
                 </div>
@@ -189,20 +217,33 @@
                 <!-- 4. EDU & SKILLS -->
                 <div class="space-y-4">
                     <h2 class="font-black text-xl" id="txt-skills">4. Formazione & Competenze</h2>
+                    <label for="edu" class="sr-only">Istruzione e Formazione</label>
                     <textarea id="edu" rows="3" placeholder="Scuole, Università, Corsi..." oninput="sync()"></textarea>
                     <div class="grid grid-cols-2 gap-4">
-                        <input type="text" id="sk1" placeholder="Soft Skills" oninput="sync()">
-                        <input type="text" id="sk2" placeholder="Hard Skills" oninput="sync()">
-                        <input type="text" id="l1" placeholder="Lingue" oninput="sync()">
-                        <input type="text" id="lic" placeholder="Patenti" oninput="sync()">
+                        <div>
+                            <label for="sk1" class="sr-only">Soft Skills</label>
+                            <input type="text" id="sk1" placeholder="Soft Skills" oninput="sync()">
+                        </div>
+                        <div>
+                            <label for="sk2" class="sr-only">Hard Skills</label>
+                            <input type="text" id="sk2" placeholder="Hard Skills" oninput="sync()">
+                        </div>
+                        <div>
+                            <label for="l1" class="sr-only">Lingue</label>
+                            <input type="text" id="l1" placeholder="Lingue" oninput="sync()">
+                        </div>
+                        <div>
+                            <label for="lic" class="sr-only">Patenti</label>
+                            <input type="text" id="lic" placeholder="Patenti" oninput="sync()">
+                        </div>
                     </div>
                 </div>
 
                 <!-- 5. LETTERA IA -->
                 <div class="bg-indigo-50 p-6 rounded-3xl border border-indigo-100 space-y-4">
                     <div class="flex justify-between items-center">
-                        <h2 class="font-black text-lg text-indigo-900 uppercase" id="txt-letter-title">✉️ Lettera di Presentazione IA</h2>
-                        <button type="button" onclick="ai('letter', event)" id="btn-ai-letter" class="bg-indigo-600 text-white text-[9px] font-black px-4 py-2 rounded-full shadow-lg">✨ GENERA ORA</button>
+                        <label for="coverLetter" class="font-black text-lg text-indigo-900 uppercase" id="txt-letter-title">✉️ Lettera di Presentazione IA</label>
+                        <button type="button" onclick="ai('letter', event)" id="btn-ai-letter" class="bg-indigo-600 text-white text-xs font-black px-4 py-2 rounded-full shadow-lg">✨ GENERA ORA</button>
                     </div>
                     <textarea id="coverLetter" rows="5" placeholder="L'IA scriverà qui basandosi sull'annuncio..." oninput="sync()"></textarea>
                 </div>
@@ -216,7 +257,7 @@
                 <!-- CV SHEET -->
                 <div id="cv-page" class="preview-page flex">
                     <div class="watermark no-print" id="wm-cv"><div class="watermark-badge" id="wm-txt-cv">ANTEPRIMA CVPRONTO.IT<br>SBLOCCA PER PDF PULITO</div></div>
-                    <div class="w-1/3 bg-slate-800 text-white p-6 text-[9px] space-y-6">
+                    <div class="w-1/3 bg-slate-800 text-white p-6 text-xs space-y-6">
                         <img id="outPhoto" alt="Foto Profilo Curriculum" class="w-20 h-20 rounded-full border-2 border-blue-500 mx-auto hidden object-cover shadow-lg">
                         <div id="initials" class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto shadow-xl">CV</div>
                         <div class="space-y-3">
@@ -231,14 +272,14 @@
                     <div class="w-2/3 p-10 flex flex-col justify-between">
                         <div>
                             <h1 id="outName" class="text-2xl font-black text-slate-900 uppercase leading-none">Nome Cognome</h1>
-                            <p id="outRole" class="text-[10px] font-black text-blue-600 uppercase mb-6 tracking-widest"></p>
-                            <div class="space-y-6 text-[10px] leading-relaxed text-slate-700">
+                            <p id="outRole" class="text-xs font-black text-blue-600 uppercase mb-6 tracking-widest"></p>
+                            <div class="space-y-6 text-xs leading-relaxed text-slate-700">
                                 <div><p id="lbl-cv-profile" class="font-black border-b-2 border-slate-100 mb-1 uppercase text-slate-400">Profilo</p><p id="outProfile" class="whitespace-pre-wrap"></p></div>
                                 <div><p id="lbl-cv-exp" class="font-black border-b-2 border-slate-100 mb-1 uppercase text-slate-400">Esperienza</p><p id="outExp" class="whitespace-pre-wrap"></p></div>
                                 <div><p id="lbl-cv-edu" class="font-black border-b-2 border-slate-100 mb-1 uppercase text-slate-400">Istruzione</p><p id="outEdu" class="whitespace-pre-wrap"></p></div>
                             </div>
                         </div>
-                        <p id="lbl-cv-gdpr" class="pt-3 border-t border-slate-100 text-[6px] text-slate-400 uppercase">Autorizzo il trattamento dei dati (GDPR 679/16).</p>
+                        <p id="lbl-cv-gdpr" class="pt-3 border-t border-slate-100 text-xs text-slate-400 uppercase">Autorizzo il trattamento dei dati (GDPR 679/16).</p>
                     </div>
                 </div>
 
@@ -249,13 +290,13 @@
                         <h2 id="outNameL" class="text-2xl font-black uppercase"></h2>
                         <p id="outRoleL" class="text-xs text-blue-600 font-black uppercase"></p>
                     </div>
-                    <p id="lbl-letter-subject" class="text-[10px] font-black mb-4 uppercase tracking-widest text-slate-400">Oggetto: Candidatura Professionale</p>
-                    <p id="outCoverLetter" class="text-[10px] text-slate-700 leading-relaxed whitespace-pre-wrap">La tua lettera apparirà qui...</p>
+                    <p id="lbl-letter-subject" class="text-xs font-black mb-4 uppercase tracking-widest text-slate-400">Oggetto: Candidatura Professionale</p>
+                    <p id="outCoverLetter" class="text-xs text-slate-700 leading-relaxed whitespace-pre-wrap">La tua lettera apparirà qui...</p>
                 </div>
 
                 <!-- CHECKOUT AREA -->
-                <div id="checkout-box" class="bg-white border-4 border-emerald-500 rounded-[2.5rem] p-8 shadow-2xl text-center no-print space-y-4">
-                    <div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-800 text-[10px] font-black px-4 py-1.5 rounded-full border border-emerald-200 uppercase tracking-wide">
+                <div id="checkout-box" class="bg-white border-4 border-emerald-500 rounded-3xl p-8 shadow-2xl text-center no-print space-y-4">
+                    <div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-800 text-xs font-black px-4 py-1.5 rounded-full border border-emerald-200 uppercase tracking-wide">
                         <span>🛡️ ACQUISTO SICURO • ZERO ABBONAMENTI</span>
                     </div>
 
@@ -263,17 +304,17 @@
                     
                     <button type="button" onclick="window.location.href='https://buy.stripe.com/fZudR83LpdsCdrG2219EI03'" id="btn-pay" class="w-full bg-emerald-500 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-emerald-600 transition-all text-sm uppercase">💳 SBLOCCA DOWNLOAD PDF</button>
                     
-                    <div class="flex items-center justify-center gap-4 text-slate-400 text-[11px] pt-1">
+                    <div class="flex items-center justify-center gap-4 text-slate-400 text-xs pt-1">
                         <span class="flex items-center gap-1 font-semibold">🔒 Crittografia SSL 256-bit</span>
                         <span>•</span>
                         <span class="flex items-center gap-1 font-semibold">⚡ Pagamento Diretto Stripe</span>
                     </div>
 
-                    <p class="text-[9px] text-slate-400 font-bold uppercase leading-tight">
+                    <p class="text-xs text-slate-400 font-bold uppercase leading-tight">
                         Pagamento unico una tantum. Nessun addebito mensile o costo nascosto. Accetti la fornitura immediata del contenuto digitale e la rinuncia al recesso.
                     </p>
                     
-                    <p class="text-amber-500 text-[10px] font-black uppercase mt-1">★ ★ ★ ★ ★ (4.9/5 TrustScore)</p>
+                    <p class="text-amber-500 text-xs font-black uppercase mt-1">★ ★ ★ ★ ★ (4.9/5 TrustScore)</p>
                 </div>
             </div>
         </div>
@@ -301,7 +342,7 @@
             <article class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
                 <div class="text-3xl mb-4">🌍</div>
                 <h3 id="art4-title" class="font-black text-lg mb-2 text-amber-600">Curriculum in Inglese Perfetto</h3>
-                <p id="art4-desc" class="text-xs text-slate-600 leading-relaxed">Tradurre letteralmente il CV dall'italiano genera errori di terminologia aziendale. Il nostro motore IA adatta le tue competenze secondo i canoni ufficiali usati dalle multinazionali USA/UK.</p>
+                <p id="art4-desc" class="text-xs text-slate-600 leading-relaxed">Tradurre letteralmente il CV dall'italiano genera errori di terminologia aziendale. Il nostro motore IA adalta le tue competenze secondo i canoni ufficiali usati dalle multinazionali USA/UK.</p>
             </article>
             <article class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
                 <div class="text-3xl mb-4">📄</div>
@@ -319,7 +360,7 @@
             <span>•</span>
             <button type="button" onclick="togglePrivacyModal(true)" class="hover:underline">Termini di Servizio</button>
         </div>
-        <p class="text-[8px] text-slate-600 uppercase font-black tracking-widest">© 2026 CVPronto.it | Un progetto per superare gli ATS.</p>
+        <p class="text-xs text-slate-600 uppercase font-black tracking-widest">© 2026 CVPronto.it | Un progetto per superare gli ATS.</p>
     </footer>
 
     <script>
@@ -438,8 +479,8 @@
         function switchTab(t) {
             document.getElementById('tab-edit').classList.toggle('active', t === 'edit');
             document.getElementById('tab-view').classList.toggle('active', t === 'view');
-            document.getElementById('tab-edit-btn').className = t === 'edit' ? 'flex-1 py-4 text-[10px] font-black border-b-2 border-blue-600 text-blue-600 uppercase tracking-widest' : 'flex-1 py-4 text-[10px] font-black border-b-2 border-transparent text-slate-400 uppercase tracking-widest';
-            document.getElementById('tab-view-btn').className = t === 'view' ? 'flex-1 py-4 text-[10px] font-black border-b-2 border-blue-600 text-blue-600 uppercase tracking-widest' : 'flex-1 py-4 text-[10px] font-black border-b-2 border-transparent text-slate-400 uppercase tracking-widest';
+            document.getElementById('tab-edit-btn').className = t === 'edit' ? 'flex-1 py-4 text-xs font-black border-b-2 border-blue-600 text-blue-600 uppercase tracking-widest' : 'flex-1 py-4 text-xs font-black border-b-2 border-transparent text-slate-400 uppercase tracking-widest';
+            document.getElementById('tab-view-btn').className = t === 'view' ? 'flex-1 py-4 text-xs font-black border-b-2 border-blue-600 text-blue-600 uppercase tracking-widest' : 'flex-1 py-4 text-xs font-black border-b-2 border-transparent text-slate-400 uppercase tracking-widest';
         }
 
         function sync() {
